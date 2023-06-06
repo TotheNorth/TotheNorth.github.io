@@ -5,7 +5,7 @@ toc: content
 # PageContainer
 
 使用`js对象`或者`json数据`对页面的内容和布局进行描述，进而渲染出完整页面；
-目前已有`Form`、`TableWithForm`、`StepsForm`、`Detail`、`Tabs`、`Chart`、`CustomCard`等几种`可配置 Card`，可以使用 [antd-layout](https://4x.ant.design/components/layout-cn/) 或 [react-grid-layout](https://github.com/react-grid-layout/react-grid-layout) 对已有 Card 进行布局。
+目前已有`Form`、`TableWithForm`、`StepsForm`、`Detail`、`Tabs`、`Chart`、`CustomCard`等几种`可配置 Card`，可以使用 [antd-layout](https://4x.ant.design/components/layout-cn/) 或 [react-grid-layout](https://github.com/react-grid-layout/react-grid-layout) 对已经有的 Card 进行布局。
 
 ## 单个表单表格卡片
 

@@ -3,7 +3,7 @@ import { defineConfig } from "dumi";
 const repo = "agul-library";
 export default defineConfig({
   resolve: {
-    docDirs: ["does1"],
+    docDirs: ["does"],
   },
   outputPath: "docs",
   hash: true,
