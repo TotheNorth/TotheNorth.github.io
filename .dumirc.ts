@@ -5,7 +5,7 @@ export default defineConfig({
   resolve: {
     docDirs: ["does1"],
   },
-  outputPath: "does",
+  outputPath: "docs",
   hash: true,
   // 使用 webpack 5进行构建。
   themeConfig: {
