@@ -16,7 +16,7 @@
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepublishOnly": "father doctor && npm run build",
-    "deploy": "gh-pages -d docs-dist"
+    "deploy": "gh-pages -d docs"
   },
   "authors": [
     "hujunlei@iauto.com"

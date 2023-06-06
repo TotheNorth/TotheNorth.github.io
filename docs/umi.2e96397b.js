@@ -520,295 +520,295 @@ export default () => (\r
     `,paraId:0,tocIndex:3},{value:"\u9762\u5305\u5C51\u7EC4\u4EF6\u5916\u5C42\u6837\u5F0F",paraId:0,tocIndex:3},{value:`
     `,paraId:0,tocIndex:3},{value:"CSSProperties",paraId:0,tocIndex:3},{value:`
     `,paraId:0,tocIndex:3},{value:"-",paraId:0,tocIndex:3},{value:`
-  `,paraId:0,tocIndex:3}],ce=e(42122),ye=e.n(ce),be={"src-newform-demo-0":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input1:{title:"\u7B80\u5355\u8F93\u5165\u6846",type:"string",required:!0},select1:{title:"\u5355\u9009",type:"string",enum:["a","b","c"],enumNames:["\u65E9","\u4E2D","\u665A"]}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-0",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-
-const schema = {
-  type: "object",
-  properties: {
-    input1: {
-      title: "\u7B80\u5355\u8F93\u5165\u6846",
-      type: "string",
-      required: true,
-    },
-    select1: {
-      title: "\u5355\u9009",
-      type: "string",
-      enum: ["a", "b", "c"],
-      enumNames: ["\u65E9", "\u4E2D", "\u665A"],
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const onSubmit = (data, errors) => {
-    if (!errors || !errors.length) {
-      console.log(data);
-    }
-  };
-  return <NewForm schema={schema} onSubmit={onSubmit} />;
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-1":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{file:{title:"\u6587\u4EF6\u4E0A\u4F20",type:"string",widget:"CustomUpload"}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we){console.log("submit",we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-1",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-// https://xrender.fun/form-render/advanced-validate#%E4%B8%80%E5%86%85%E7%BD%AE%E6%A0%A1%E9%AA%8C
-// \u5DF2\u6709widget\u5219type\u4E0D\u9700\u8981\uFF0Cformat\u662F\u5BF9type\u7684\u8F6C\u5316\u5904\u7406\u65B9\u5F0F
-const schema = {
-  type: "object",
-  properties: {
-    file: {
-      title: "\u6587\u4EF6\u4E0A\u4F20",
-      type: "string",
-      widget: "CustomUpload",
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const onSubmit = (data) => {
-    console.log("submit", data);
-  };
-  return <NewForm schema={schema} onSubmit={onSubmit} />;
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-2":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u516C\u5F0F",widget:"CodeEditor"}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-2",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-
-const schema = {
-  type: "object",
-  properties: {
-    input: {
-      title: "\u516C\u5F0F",
-      widget: "CodeEditor",
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const onSubmit = (data, errors) => {
-    if (!errors || !errors.length) {
-      console.log(data);
-    }
-  };
-  return <NewForm schema={schema} onSubmit={onSubmit} />;
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-3":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"json",widget:"JsonEditor"}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-3",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-
-const schema = {
-  type: "object",
-  properties: {
-    input: {
-      title: "json",
-      widget: "JsonEditor",
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const onSubmit = (data, errors) => {
-    if (!errors || !errors.length) {
-      console.log(data);
-    }
-  };
-  return <NewForm schema={schema} onSubmit={onSubmit} />;
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-4":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u7B80\u5355\u7A7F\u68AD\u6846",type:"array",widget:"CustomCascader",treeData:{url:"https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",path:"data",labelFeilds:["name","name"],valueFeilds:["uid","uid"]}}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-4",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-
-const schema = {
-  type: "object",
-  properties: {
-    input: {
-      title: "\u7B80\u5355\u7A7F\u68AD\u6846",
-      type: "array",
-      widget: "CustomCascader",
-      treeData: {
-        url:
-          "https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",
-        path: "data",
-        labelFeilds: ["name", "name"],
-        valueFeilds: ["uid", "uid"],
-      },
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const onSubmit = (data, errors) => {
-    if (!errors || !errors.length) {
-      console.log(data);
-    }
-  };
-  return <NewForm schema={schema} onSubmit={onSubmit} />;
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-5":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u7B80\u5355\u4E0B\u62C9\u6846",type:"string",widget:"CustomStringSelect",required:!0,treeData:{url:"https://yapi.ci.iauto.com/mock/730/api/daq-collecttable-ms/v1/admin/datatype:list",path:"data",labelFeild:"name",valueFeild:"uid"}}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-5",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-
-const schema = {
-  type: "object",
-  properties: {
-    input: {
-      title: "\u7B80\u5355\u4E0B\u62C9\u6846",
-      type: "string",
-      widget: "CustomStringSelect",
-      required: true,
-      treeData: {
-        url:
-          "https://yapi.ci.iauto.com/mock/730/api/daq-collecttable-ms/v1/admin/datatype:list",
-        path: "data",
-        labelFeild: "name",
-        valueFeild: "uid",
-      },
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const onSubmit = (data, errors) => {
-    if (!errors || !errors.length) {
-      console.log(data);
-    }
-  };
-  return <NewForm schema={schema} onSubmit={onSubmit} />;
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-6":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u7B80\u5355\u6811\u72B6\u9009\u62E9",type:"array",widget:"CustomTreeSelect",treeData:{url:"https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",path:"data",labelFeild:"name",valueFeild:"uid"}}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-6",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-
-const schema = {
-  type: "object",
-  properties: {
-    input: {
-      title: "\u7B80\u5355\u6811\u72B6\u9009\u62E9",
-      type: "array",
-      widget: "CustomTreeSelect",
-      treeData: {
-        url:
-          "https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",
-        path: "data",
-        labelFeild: "name",
-        valueFeild: "uid",
-      },
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const onSubmit = (data, errors) => {
-    if (!errors || !errors.length) {
-      console.log(data);
-    }
-  };
-  return <NewForm schema={schema} onSubmit={onSubmit} />;
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-7":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u7B80\u5355\u6811\u72B6\u9009\u62E9",type:"array",widget:"AsyncSelect",treeData:{url:"https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",path:"data",keywordFeild:"name",params:{a:1},labelFeild:"name",valueFeild:"uid"}}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-7",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-
-const schema = {
-  type: "object",
-  properties: {
-    input: {
-      title: "\u7B80\u5355\u6811\u72B6\u9009\u62E9",
-      type: "array",
-      widget: "AsyncSelect",
-      treeData: {
-        url:
-          "https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",
-        path: "data",
-        keywordFeild: "name",
-        params: { a: 1 },
-        labelFeild: "name",
-        valueFeild: "uid",
-      },
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const onSubmit = (data, errors) => {
-    if (!errors || !errors.length) {
-      console.log(data);
-    }
-  };
-  return <NewForm schema={schema} onSubmit={onSubmit} />;
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-8":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L,z,X;return V()().wrap(function(we){for(;;)switch(we.prev=we.next){case 0:return we.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=we.sent,te=$.NewForm,we.next=6,Promise.resolve().then(e.t.bind(e,67294,19));case 6:return ge=we.sent,j=ge.useState,we.next=10,Promise.all([e.e(755),e.e(634)]).then(e.bind(e,46634));case 10:return L=we.sent,z=L.Input,X={type:"object",properties:{input1:{title:"\u521D\u59CB\u5316",type:"string",default:"no"},input2:{title:"\u54CD\u5E94\u5916\u90E8\u53D8\u66F4",type:"string"}},displayType:"row"},we.abrupt("return",{default:function(){var nt=j({input1:"default"}),dt=o()(nt,2),vt=dt[0],yt=dt[1],Rt=function(mt){yt(mt)};return n.createElement("div",null,n.createElement("div",{style:{marginBottom:20}},n.createElement("span",{style:{width:"20.8%",display:"inline-block",textAlign:"right"}},"\u5916\u90E8\u6570\u636E\u6E90\uFF1A"),n.createElement(z,{style:{width:200},onChange:function(mt){console.log(mt.target.value),yt({input2:mt.target.value})}})),n.createElement(te,{schema:X,onChange:Rt,formData:vt}))}});case 14:case"end":return we.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-8",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-import { useState } from "react";
-import { Input } from "antd";
-import _ from "lodash";
-
-const schema = {
-  type: "object",
-  properties: {
-    input1: {
-      title: "\u521D\u59CB\u5316",
-      type: "string",
-      default: "no",
-    },
-    input2: {
-      title: "\u54CD\u5E94\u5916\u90E8\u53D8\u66F4",
-      type: "string",
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const [formData, setData] = useState({ input1: "default" });
-  const onChange = (data: any) => {
-    setData(data);
-  };
-  return (
-    <div>
-      <div style={{ marginBottom: 20 }}>
-        <span
-          style={{
-            width: "20.8%",
-            display: "inline-block",
-            textAlign: "right",
-          }}
-        >
-          \u5916\u90E8\u6570\u636E\u6E90\uFF1A
-        </span>
-        <Input
-          style={{ width: 200 }}
-          onChange={(e: any) => {
-            console.log(e.target.value);
-            setData({ input2: e.target.value });
-          }}
-        />
-      </div>
-
-      <NewForm schema={schema} onChange={onChange} formData={formData} />
-    </div>
-  );
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"},react:{type:"NPM",value:"18.0.0"},antd:{type:"NPM",value:"4.24.7"}}}},"src-newform-demo-9":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L;return V()().wrap(function(X){for(;;)switch(X.prev=X.next){case 0:return X.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=X.sent,te=$.NewForm,X.next=6,Promise.resolve().then(e.t.bind(e,67294,19));case 6:return ge=X.sent,j=ge.useState,L={type:"object",properties:{input1:{title:"\u521D\u59CB\u503C",type:"string"},input2:{title:"\u6574\u5F62\u503C",type:"string"}},action:{change:function(we){we.input2="CHANGE VALUE"},submit:function(we){we.input2=we.input1}},displayType:"row"},X.abrupt("return",{default:function(){var we=j({input1:"default"}),Ze=o()(we,2),nt=Ze[0],dt=Ze[1],vt=function(Et){console.log(Et),dt(ye()({},Et))},yt=function(Et){console.log(Et)};return n.createElement(te,{schema:L,onChange:vt,formData:nt,onSubmit:yt})}});case 10:case"end":return X.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-9",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";
-import { useState } from "react";
-import _ from "lodash";
-
-const schema = {
-  type: "object",
-  properties: {
-    input1: {
-      title: "\u521D\u59CB\u503C",
-      type: "string",
-    },
-    input2: {
-      title: "\u6574\u5F62\u503C",
-      type: "string",
-    },
-  },
-  action: {
-    // init(data) {
-    //   data.input2 = data.input1 + "$$$";
-    // },
-    change(data) {
-      data.input2 = "CHANGE VALUE";
-    },
-    submit(data) {
-      data.input2 = data.input1;
-    },
-  },
-  displayType: "row",
-};
-export default () => {
-  const [formData, setData] = useState({ input1: "default" });
-  const onChange = (data: any) => {
-    console.log(data);
-    setData({ ...data });
-  };
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-  return (
-    <NewForm
-      schema={schema}
-      onChange={onChange}
-      formData={formData}
-      onSubmit={onSubmit}
-    />
-  );
+  `,paraId:0,tocIndex:3}],ce=e(42122),ye=e.n(ce),be={"src-newform-demo-0":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input1:{title:"\u7B80\u5355\u8F93\u5165\u6846",type:"string",required:!0},select1:{title:"\u5355\u9009",type:"string",enum:["a","b","c"],enumNames:["\u65E9","\u4E2D","\u665A"]}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-0",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    input1: {\r
+      title: "\u7B80\u5355\u8F93\u5165\u6846",\r
+      type: "string",\r
+      required: true,\r
+    },\r
+    select1: {\r
+      title: "\u5355\u9009",\r
+      type: "string",\r
+      enum: ["a", "b", "c"],\r
+      enumNames: ["\u65E9", "\u4E2D", "\u665A"],\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const onSubmit = (data, errors) => {\r
+    if (!errors || !errors.length) {\r
+      console.log(data);\r
+    }\r
+  };\r
+  return <NewForm schema={schema} onSubmit={onSubmit} />;\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-1":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{file:{title:"\u6587\u4EF6\u4E0A\u4F20",type:"string",widget:"CustomUpload"}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we){console.log("submit",we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-1",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+// https://xrender.fun/form-render/advanced-validate#%E4%B8%80%E5%86%85%E7%BD%AE%E6%A0%A1%E9%AA%8C\r
+// \u5DF2\u6709widget\u5219type\u4E0D\u9700\u8981\uFF0Cformat\u662F\u5BF9type\u7684\u8F6C\u5316\u5904\u7406\u65B9\u5F0F\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    file: {\r
+      title: "\u6587\u4EF6\u4E0A\u4F20",\r
+      type: "string",\r
+      widget: "CustomUpload",\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const onSubmit = (data) => {\r
+    console.log("submit", data);\r
+  };\r
+  return <NewForm schema={schema} onSubmit={onSubmit} />;\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-2":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u516C\u5F0F",widget:"CodeEditor"}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-2",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    input: {\r
+      title: "\u516C\u5F0F",\r
+      widget: "CodeEditor",\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const onSubmit = (data, errors) => {\r
+    if (!errors || !errors.length) {\r
+      console.log(data);\r
+    }\r
+  };\r
+  return <NewForm schema={schema} onSubmit={onSubmit} />;\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-3":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"json",widget:"JsonEditor"}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-3",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    input: {\r
+      title: "json",\r
+      widget: "JsonEditor",\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const onSubmit = (data, errors) => {\r
+    if (!errors || !errors.length) {\r
+      console.log(data);\r
+    }\r
+  };\r
+  return <NewForm schema={schema} onSubmit={onSubmit} />;\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-4":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u7B80\u5355\u7A7F\u68AD\u6846",type:"array",widget:"CustomCascader",treeData:{url:"https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",path:"data",labelFeilds:["name","name"],valueFeilds:["uid","uid"]}}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-4",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    input: {\r
+      title: "\u7B80\u5355\u7A7F\u68AD\u6846",\r
+      type: "array",\r
+      widget: "CustomCascader",\r
+      treeData: {\r
+        url:\r
+          "https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",\r
+        path: "data",\r
+        labelFeilds: ["name", "name"],\r
+        valueFeilds: ["uid", "uid"],\r
+      },\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const onSubmit = (data, errors) => {\r
+    if (!errors || !errors.length) {\r
+      console.log(data);\r
+    }\r
+  };\r
+  return <NewForm schema={schema} onSubmit={onSubmit} />;\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-5":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u7B80\u5355\u4E0B\u62C9\u6846",type:"string",widget:"CustomStringSelect",required:!0,treeData:{url:"https://yapi.ci.iauto.com/mock/730/api/daq-collecttable-ms/v1/admin/datatype:list",path:"data",labelFeild:"name",valueFeild:"uid"}}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-5",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    input: {\r
+      title: "\u7B80\u5355\u4E0B\u62C9\u6846",\r
+      type: "string",\r
+      widget: "CustomStringSelect",\r
+      required: true,\r
+      treeData: {\r
+        url:\r
+          "https://yapi.ci.iauto.com/mock/730/api/daq-collecttable-ms/v1/admin/datatype:list",\r
+        path: "data",\r
+        labelFeild: "name",\r
+        valueFeild: "uid",\r
+      },\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const onSubmit = (data, errors) => {\r
+    if (!errors || !errors.length) {\r
+      console.log(data);\r
+    }\r
+  };\r
+  return <NewForm schema={schema} onSubmit={onSubmit} />;\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-6":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u7B80\u5355\u6811\u72B6\u9009\u62E9",type:"array",widget:"CustomTreeSelect",treeData:{url:"https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",path:"data",labelFeild:"name",valueFeild:"uid"}}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-6",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    input: {\r
+      title: "\u7B80\u5355\u6811\u72B6\u9009\u62E9",\r
+      type: "array",\r
+      widget: "CustomTreeSelect",\r
+      treeData: {\r
+        url:\r
+          "https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",\r
+        path: "data",\r
+        labelFeild: "name",\r
+        valueFeild: "uid",\r
+      },\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const onSubmit = (data, errors) => {\r
+    if (!errors || !errors.length) {\r
+      console.log(data);\r
+    }\r
+  };\r
+  return <NewForm schema={schema} onSubmit={onSubmit} />;\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-7":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewForm,ge={type:"object",properties:{input:{title:"\u7B80\u5355\u6811\u72B6\u9009\u62E9",type:"array",widget:"AsyncSelect",treeData:{url:"https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",path:"data",keywordFeild:"name",params:{a:1},labelFeild:"name",valueFeild:"uid"}}},displayType:"row"},L.abrupt("return",{default:function(){var X=function(we,Ze){(!Ze||!Ze.length)&&console.log(we)};return n.createElement(te,{schema:ge,onSubmit:X})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-7",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    input: {\r
+      title: "\u7B80\u5355\u6811\u72B6\u9009\u62E9",\r
+      type: "array",\r
+      widget: "AsyncSelect",\r
+      treeData: {\r
+        url:\r
+          "https://yapi.ci.iauto.com/mock/730/api/daq-collectable-ms/v1/admin/datatype:tree",\r
+        path: "data",\r
+        keywordFeild: "name",\r
+        params: { a: 1 },\r
+        labelFeild: "name",\r
+        valueFeild: "uid",\r
+      },\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const onSubmit = (data, errors) => {\r
+    if (!errors || !errors.length) {\r
+      console.log(data);\r
+    }\r
+  };\r
+  return <NewForm schema={schema} onSubmit={onSubmit} />;\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newform-demo-8":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L,z,X;return V()().wrap(function(we){for(;;)switch(we.prev=we.next){case 0:return we.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=we.sent,te=$.NewForm,we.next=6,Promise.resolve().then(e.t.bind(e,67294,19));case 6:return ge=we.sent,j=ge.useState,we.next=10,Promise.all([e.e(755),e.e(634)]).then(e.bind(e,46634));case 10:return L=we.sent,z=L.Input,X={type:"object",properties:{input1:{title:"\u521D\u59CB\u5316",type:"string",default:"no"},input2:{title:"\u54CD\u5E94\u5916\u90E8\u53D8\u66F4",type:"string"}},displayType:"row"},we.abrupt("return",{default:function(){var nt=j({input1:"default"}),dt=o()(nt,2),vt=dt[0],yt=dt[1],Rt=function(mt){yt(mt)};return n.createElement("div",null,n.createElement("div",{style:{marginBottom:20}},n.createElement("span",{style:{width:"20.8%",display:"inline-block",textAlign:"right"}},"\u5916\u90E8\u6570\u636E\u6E90\uFF1A"),n.createElement(z,{style:{width:200},onChange:function(mt){console.log(mt.target.value),yt({input2:mt.target.value})}})),n.createElement(te,{schema:X,onChange:Rt,formData:vt}))}});case 14:case"end":return we.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-8",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+import { useState } from "react";\r
+import { Input } from "antd";\r
+import _ from "lodash";\r
+\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    input1: {\r
+      title: "\u521D\u59CB\u5316",\r
+      type: "string",\r
+      default: "no",\r
+    },\r
+    input2: {\r
+      title: "\u54CD\u5E94\u5916\u90E8\u53D8\u66F4",\r
+      type: "string",\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const [formData, setData] = useState({ input1: "default" });\r
+  const onChange = (data: any) => {\r
+    setData(data);\r
+  };\r
+  return (\r
+    <div>\r
+      <div style={{ marginBottom: 20 }}>\r
+        <span\r
+          style={{\r
+            width: "20.8%",\r
+            display: "inline-block",\r
+            textAlign: "right",\r
+          }}\r
+        >\r
+          \u5916\u90E8\u6570\u636E\u6E90\uFF1A\r
+        </span>\r
+        <Input\r
+          style={{ width: 200 }}\r
+          onChange={(e: any) => {\r
+            console.log(e.target.value);\r
+            setData({ input2: e.target.value });\r
+          }}\r
+        />\r
+      </div>\r
+\r
+      <NewForm schema={schema} onChange={onChange} formData={formData} />\r
+    </div>\r
+  );\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"},react:{type:"NPM",value:"18.0.0"},antd:{type:"NPM",value:"4.24.7"}}}},"src-newform-demo-9":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L;return V()().wrap(function(X){for(;;)switch(X.prev=X.next){case 0:return X.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=X.sent,te=$.NewForm,X.next=6,Promise.resolve().then(e.t.bind(e,67294,19));case 6:return ge=X.sent,j=ge.useState,L={type:"object",properties:{input1:{title:"\u521D\u59CB\u503C",type:"string"},input2:{title:"\u6574\u5F62\u503C",type:"string"}},action:{change:function(we){we.input2="CHANGE VALUE"},submit:function(we){we.input2=we.input1}},displayType:"row"},X.abrupt("return",{default:function(){var we=j({input1:"default"}),Ze=o()(we,2),nt=Ze[0],dt=Ze[1],vt=function(Et){console.log(Et),dt(ye()({},Et))},yt=function(Et){console.log(Et)};return n.createElement(te,{schema:L,onChange:vt,formData:nt,onSubmit:yt})}});case 10:case"end":return X.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newform-demo-9",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewForm } from "@iauto/components";\r
+import { useState } from "react";\r
+import _ from "lodash";\r
+\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    input1: {\r
+      title: "\u521D\u59CB\u503C",\r
+      type: "string",\r
+    },\r
+    input2: {\r
+      title: "\u6574\u5F62\u503C",\r
+      type: "string",\r
+    },\r
+  },\r
+  action: {\r
+    // init(data) {\r
+    //   data.input2 = data.input1 + "$$$";\r
+    // },\r
+    change(data) {\r
+      data.input2 = "CHANGE VALUE";\r
+    },\r
+    submit(data) {\r
+      data.input2 = data.input1;\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+export default () => {\r
+  const [formData, setData] = useState({ input1: "default" });\r
+  const onChange = (data: any) => {\r
+    console.log(data);\r
+    setData({ ...data });\r
+  };\r
+  const onSubmit = (data) => {\r
+    console.log(data);\r
+  };\r
+  return (\r
+    <NewForm\r
+      schema={schema}\r
+      onChange={onChange}\r
+      formData={formData}\r
+      onSubmit={onSubmit}\r
+    />\r
+  );\r
 };`},"@iauto/components":{type:"NPM",value:"0.0.1"},react:{type:"NPM",value:"18.0.0"}}}}},ee={title:"NewForm",toc:"content",filename:"src/newform/index.md",description:"\u901A\u8FC7schema\u6765\u63CF\u8FF0\u8868\u5355\u7684\u57FA\u672C\u4FE1\u606F\u3001\u7ED3\u6784\u548C\u6821\u9A8C\uFF0C NewForm\u5E95\u5C42\u57FA\u4E8EXRender\u7684FormRender\uFF0C\u5177\u4F53schema\u7684\u914D\u7F6E\u89C1schema \u89C4\u8303\u3002"},De=[{id:"newform",depth:1,title:"NewForm"},{id:"\u57FA\u672C\u4F7F\u7528",depth:2,title:"\u57FA\u672C\u4F7F\u7528"},{id:"xrender-formrender-\u57FA\u7840\u4E0A\u65B0\u589E\u529F\u80FD",depth:2,title:"XRender-FormRender \u57FA\u7840\u4E0A\u65B0\u589E\u529F\u80FD"},{id:"\u6587\u4EF6\u4E0A\u4F20",depth:2,title:"\u6587\u4EF6\u4E0A\u4F20"},{id:"\u4EE3\u7801\u7F16\u8F91\u5668",depth:2,title:"\u4EE3\u7801\u7F16\u8F91\u5668"},{id:"json-\u7F16\u8F91\u5668",depth:2,title:"JSON \u7F16\u8F91\u5668"},{id:"\u7A7F\u68AD\u6846",depth:2,title:"\u7A7F\u68AD\u6846"},{id:"\u4E0B\u62C9\u6846",depth:2,title:"\u4E0B\u62C9\u6846"},{id:"\u6811\u72B6\u9009\u62E9",depth:2,title:"\u6811\u72B6\u9009\u62E9"},{id:"\u6A21\u7CCA\u641C\u7D22",depth:2,title:"\u6A21\u7CCA\u641C\u7D22"},{id:"\u53D7\u63A7\u7684\u8868\u5355\u7EC4\u4EF6",depth:2,title:"\u53D7\u63A7\u7684\u8868\u5355\u7EC4\u4EF6"},{id:"\u8868\u5355\u6570\u636E\u6574\u5F62\u4E0D\u91CD\u8981-",depth:2,title:"\u8868\u5355\u6570\u636E\u6574\u5F62\uFF08\u4E0D\u91CD\u8981 \uFF09"},{id:"api",depth:2,title:"API"},{id:"newform-1",depth:3,title:"NewForm"}],ae=[{value:"\u901A\u8FC7",paraId:0,tocIndex:1},{value:"schema",paraId:0,tocIndex:1},{value:"\u6765\u63CF\u8FF0\u8868\u5355\u7684\u57FA\u672C\u4FE1\u606F\u3001\u7ED3\u6784\u548C\u6821\u9A8C\uFF0C ",paraId:0,tocIndex:1},{value:"NewForm",paraId:0,tocIndex:1},{value:"\u5E95\u5C42\u57FA\u4E8E",paraId:0,tocIndex:1},{value:"XRender",paraId:0,tocIndex:1},{value:"\u7684",paraId:0,tocIndex:1},{value:"FormRender",paraId:0,tocIndex:1},{value:"\uFF0C\u5177\u4F53",paraId:0,tocIndex:1},{value:"schema",paraId:0,tocIndex:1},{value:"\u7684\u914D\u7F6E\u89C1",paraId:0,tocIndex:1},{value:"schema \u89C4\u8303",paraId:0,tocIndex:1},{value:"\u3002",paraId:0,tocIndex:1},{value:"\u57FA\u4E8E",paraId:1,tocIndex:2},{value:"XRender-FormRender",paraId:1,tocIndex:2},{value:"\u7684",paraId:1,tocIndex:2},{value:"\u81EA\u5B9A\u4E49\u7EC4\u4EF6",paraId:1,tocIndex:2},{value:"\u548C",paraId:1,tocIndex:2},{value:"\u8986\u76D6\u9ED8\u8BA4\u7EC4\u4EF6",paraId:1,tocIndex:2},{value:"\u529F\u80FD\uFF0C",paraId:1,tocIndex:2},{value:"NewForm",paraId:1,tocIndex:2},{value:"\u5728",paraId:1,tocIndex:2},{value:"XRender-FormRender",paraId:1,tocIndex:2},{value:"\u5DF2\u6709\u529F\u80FD\u57FA\u7840\u4E0A\u8FDB\u884C\u4E86\u62D3\u5C55\uFF0C\u4EE5\u4FBF\u66F4\u7B80\u6613\u5BF9\u66F4\u591A\u5E38\u7528\u8868\u5355\u63A7\u4EF6\u8FDB\u884C\u914D\u7F6E\u3002",paraId:1,tocIndex:2},{value:"\u914D\u7F6E",paraId:2,tocIndex:3},{value:"schema",paraId:2,tocIndex:3},{value:"\u7684\u5B57\u6BB5",paraId:2,tocIndex:3},{value:"widget",paraId:2,tocIndex:3},{value:"\u4E3A",paraId:2,tocIndex:3},{value:"CustomUpload",paraId:2,tocIndex:3},{value:"\uFF0C\u53EF\u4EE5\u5B9E\u73B0\u5BF9",paraId:2,tocIndex:3},{value:"\u6587\u4EF6\u4E0A\u4F20",paraId:2,tocIndex:3},{value:"\u63A7\u4EF6\u7684\u914D\u7F6E\u3002\u6CE8\u610F\uFF0C",paraId:2,tocIndex:3},{value:"form-render",paraId:2,tocIndex:3},{value:"\u5B58\u5728\u81EA\u5E26\u7684",paraId:2,tocIndex:3},{value:"upload",paraId:2,tocIndex:3},{value:"\u5185\u7F6E\u63A7\u4EF6\uFF0C\u4F46\u662F\u53EA\u652F\u6301\u81EA\u52A8\u4E0A\u4F20\uFF0C\u8FD9\u91CC\u65B0\u589E\u7684",paraId:2,tocIndex:3},{value:"CustomUpload",paraId:2,tocIndex:3},{value:"\u53EF\u4EE5\u628A",paraId:2,tocIndex:3},{value:"file",paraId:2,tocIndex:3},{value:"\u6587\u4EF6\u5BF9\u8C61\u6CE8\u5165\u5230",paraId:2,tocIndex:3},{value:"formData",paraId:2,tocIndex:3},{value:"\u4E2D\uFF0C\u5B9E\u73B0\u624B\u52A8\u4E0A\u4F20\u3002",paraId:2,tocIndex:3},{value:"\u914D\u7F6E",paraId:3,tocIndex:4},{value:"schema",paraId:3,tocIndex:4},{value:"\u7684\u5B57\u6BB5",paraId:3,tocIndex:4},{value:"widget",paraId:3,tocIndex:4},{value:"\u4E3A",paraId:3,tocIndex:4},{value:"CodeEditor",paraId:3,tocIndex:4},{value:"\uFF0C\u53EF\u4EE5\u5B9E\u73B0\u5BF9",paraId:3,tocIndex:4},{value:"\u4EE3\u7801\u7F16\u8F91\u5668",paraId:3,tocIndex:4},{value:"\u63A7\u4EF6\u7684\u914D\u7F6E\u3002",paraId:3,tocIndex:4},{value:"\u914D\u7F6E",paraId:4,tocIndex:5},{value:"schema",paraId:4,tocIndex:5},{value:"\u7684\u5B57\u6BB5",paraId:4,tocIndex:5},{value:"widget",paraId:4,tocIndex:5},{value:"\u4E3A",paraId:4,tocIndex:5},{value:"JsonEditor",paraId:4,tocIndex:5},{value:"\uFF0C\u53EF\u4EE5\u5B9E\u73B0\u5BF9",paraId:4,tocIndex:5},{value:"JSON\u7F16\u8F91\u5668",paraId:4,tocIndex:5},{value:"\u63A7\u4EF6\u7684\u914D\u7F6E\u5E76\u5BF9\u8F93\u5165\u7684\u6570\u636E\u8FDB\u884C",paraId:4,tocIndex:5},{value:"JSON",paraId:4,tocIndex:5},{value:"\u683C\u5F0F\u7684\u6821\u9A8C\u3002",paraId:4,tocIndex:5},{value:"\u914D\u7F6E",paraId:5,tocIndex:6},{value:"schema",paraId:5,tocIndex:6},{value:"\u7684\u5B57\u6BB5",paraId:5,tocIndex:6},{value:"widget",paraId:5,tocIndex:6},{value:"\u4E3A",paraId:5,tocIndex:6},{value:"CustomCascader",paraId:5,tocIndex:6},{value:"\uFF0C\u7136\u540E\u5BF9",paraId:5,tocIndex:6},{value:"treeData",paraId:5,tocIndex:6},{value:"\u8FDB\u884C\u8FDC\u7A0B\u6570\u636E\u6E90\u7684\u914D\u7F6E\u5C31\u53EF\u4EE5\u5B9E\u73B0\u5BF9",paraId:5,tocIndex:6},{value:"\u7A7F\u68AD\u6846",paraId:5,tocIndex:6},{value:"\u63A7\u4EF6\u7684\u914D\u7F6E\u3002",paraId:5,tocIndex:6},{value:"\u914D\u7F6E",paraId:6,tocIndex:7},{value:"schema",paraId:6,tocIndex:7},{value:"\u7684\u5B57\u6BB5",paraId:6,tocIndex:7},{value:"widget",paraId:6,tocIndex:7},{value:"\u4E3A",paraId:6,tocIndex:7},{value:"CustomNumberSelect",paraId:6,tocIndex:7},{value:"\u6216",paraId:6,tocIndex:7},{value:"CustomStringSelect",paraId:6,tocIndex:7},{value:"\uFF0C\u7136\u540E\u5BF9",paraId:6,tocIndex:7},{value:"treeData",paraId:6,tocIndex:7},{value:"\u8FDB\u884C\u8FDC\u7A0B\u6570\u636E\u6E90\u7684\u914D\u7F6E\u5C31\u53EF\u4EE5\u5B9E\u73B0\u5BF9",paraId:6,tocIndex:7},{value:"\u4E0B\u62C9\u6846",paraId:6,tocIndex:7},{value:"\u63A7\u4EF6\u7684\u914D\u7F6E\u3002",paraId:6,tocIndex:7},{value:"\u914D\u7F6E",paraId:7,tocIndex:8},{value:"schema",paraId:7,tocIndex:8},{value:"\u7684\u5B57\u6BB5",paraId:7,tocIndex:8},{value:"widget",paraId:7,tocIndex:8},{value:"\u4E3A",paraId:7,tocIndex:8},{value:"CustomTreeSelect",paraId:7,tocIndex:8},{value:"\uFF0C\u7136\u540E\u5BF9",paraId:7,tocIndex:8},{value:"treeData",paraId:7,tocIndex:8},{value:"\u8FDB\u884C\u8FDC\u7A0B\u6570\u636E\u6E90\u7684\u914D\u7F6E\u5C31\u53EF\u4EE5\u5B9E\u73B0\u5BF9",paraId:7,tocIndex:8},{value:"\u6811\u72B6\u9009\u62E9",paraId:7,tocIndex:8},{value:"\u63A7\u4EF6\u7684\u914D\u7F6E\uFF0C\u6CE8\u610F\u8BE5\u63A7\u4EF6\u53EA\u4F1A\u5B58\u50A8\u6570\u636E\u6E90\u6700\u5B50\u4E00\u7EA7\u7684\u6570\u636E\u7684",paraId:7,tocIndex:8},{value:"valueFeild",paraId:7,tocIndex:8},{value:"\u5B57\u6BB5\u7684\u53D6\u503C\uFF0C\u5177\u4F53\u67E5\u770B\u63A7\u5236\u53F0\u3002",paraId:7,tocIndex:8},{value:"\u914D\u7F6E",paraId:8,tocIndex:9},{value:"schema",paraId:8,tocIndex:9},{value:"\u7684\u5B57\u6BB5",paraId:8,tocIndex:9},{value:"widget",paraId:8,tocIndex:9},{value:"\u4E3A",paraId:8,tocIndex:9},{value:"AsyncSelect",paraId:8,tocIndex:9},{value:"\uFF0C\u7136\u540E\u5BF9",paraId:8,tocIndex:9},{value:"treeData",paraId:8,tocIndex:9},{value:"\u8FDB\u884C\u8FDC\u7A0B\u6570\u636E\u6E90\u7684\u914D\u7F6E\u5C31\u53EF\u4EE5\u5B9E\u73B0\u5BF9",paraId:8,tocIndex:9},{value:"\u6A21\u7CCA\u641C\u7D22",paraId:8,tocIndex:9},{value:"\u63A7\u4EF6\u7684\u914D\u7F6E\uFF0C\u5177\u4F53\u4F20\u53C2\u67E5\u770B\u63A7\u5236\u53F0\u3002",paraId:8,tocIndex:9},{value:"\u4EE5\u4E0A\u4F8B\u5B50\u90FD\u662F\u901A\u8FC7\u975E\u53D7\u63A7\u7EC4\u4EF6\u7684\u5F62\u5F0F\u5C55\u793A\u7684\uFF0C\u5F00\u53D1\u8005\u53EA\u914D\u7F6E",paraId:9,tocIndex:10},{value:"schema",paraId:9,tocIndex:10},{value:"\u5BF9\u8868\u5355\u9879\u8FDB\u884C\u63CF\u8FF0\u3002\u7136\u540E\u901A\u8FC7",paraId:9,tocIndex:10},{value:"onSubmit",paraId:9,tocIndex:10},{value:"\u6216\u8005\u5176\u4ED6\u65B9\u5F0F\u62FF\u5230\u6700\u540E\u7684\u4EA7\u51FA\u7684",paraId:9,tocIndex:10},{value:"formData",paraId:9,tocIndex:10},{value:"\uFF0C\u6574\u4E2A\u72B6\u6001\u7531",paraId:9,tocIndex:10},{value:"NewForm",paraId:9,tocIndex:10},{value:"\u81EA\u8EAB\u8FDB\u884C\u7BA1\u7406\u3002\u9664\u6B64\u4E4B\u5916\uFF0C",paraId:9,tocIndex:10},{value:"NewForm",paraId:9,tocIndex:10},{value:"\u652F\u6301\u901A\u8FC7",paraId:9,tocIndex:10},{value:"formData",paraId:9,tocIndex:10},{value:"\u548C",paraId:9,tocIndex:10},{value:"onChange",paraId:9,tocIndex:10},{value:"\u8FD9\u4E24\u4E2A",paraId:9,tocIndex:10},{value:"props",paraId:9,tocIndex:10},{value:"\u914D\u5408\u5B9E\u73B0\u4E00\u4E2A",paraId:9,tocIndex:10},{value:"\u53D7\u63A7\u7684 react \u8868\u5355\u7EC4\u4EF6",paraId:9,tocIndex:10},{value:"\u3002",paraId:9,tocIndex:10},{value:"\u5BF9",paraId:10,tocIndex:11},{value:"schema",paraId:10,tocIndex:11},{value:"\u5BF9\u8C61\u7684\u5C5E\u6027",paraId:10,tocIndex:11},{value:"action",paraId:10,tocIndex:11},{value:"\u914D\u7F6E",paraId:10,tocIndex:11},{value:"init",paraId:10,tocIndex:11},{value:"\u3001",paraId:10,tocIndex:11},{value:"change",paraId:10,tocIndex:11},{value:"\u3001",paraId:10,tocIndex:11},{value:"submit",paraId:10,tocIndex:11},{value:"\u4E09\u79CD\u51FD\u6570\uFF0C\u5BF9\u5E94\u7740\u5728",paraId:10,tocIndex:11},{value:"\u521D\u59CB\u5316(Newform\u5B58\u5728formData\u5C5E\u6027\u65F6)",paraId:10,tocIndex:11},{value:"\u3001",paraId:10,tocIndex:11},{value:"\u503C\u53D8\u66F4(Newform\u5B58\u5728onChange\u5C5E\u6027\u65F6)",paraId:10,tocIndex:11},{value:"\u3001",paraId:10,tocIndex:11},{value:"\u6821\u9A8C\u900F\u8FC7\u540E\u7684\u63D0\u4EA4(Newform\u5B58\u5728onSubmit\u5C5E\u6027\u6216\u4F7F\u7528ref.current.validate\u65B9\u6CD5\u65F6)",paraId:10,tocIndex:11},{value:"\u4E09\u4E2A\u65F6\u95F4\u70B9\u5BF9\u8868\u5355\u6570\u636E\u8FDB\u884C\u53D8\u66F4\u3002",paraId:10,tocIndex:11},{value:`
 \u6CE8\u610F\uFF1A\u51FD\u6570\u4E0D\u9700\u8981`,paraId:10,tocIndex:11},{value:"return",paraId:10,tocIndex:11},{value:"\uFF0C\u4EC5\u6539\u53D8\u5165\u53C2\u7684\u503C\u5373\u53EF\u3002",paraId:10,tocIndex:11},{value:"\u8FD9\u91CC\u4ECB\u7ECD\u5E38\u7528\u7684 props\u3002\u540C\u65F6\u4E5F\u652F\u6301 ",paraId:11,tocIndex:13},{value:"form-render",paraId:11,tocIndex:13},{value:' \u7684\u5176\u4ED6\u5927\u90E8\u5206 props \uFF0C\u9664 watch \u4E0D\u518D\u652F\u6301 "#" \u914D\u7F6E\uFF0C onFinish \u4E0D\u652F\u6301\u3002',paraId:11,tocIndex:13},{value:`
   `,paraId:12,tocIndex:13},{value:`
@@ -883,490 +883,490 @@ CustomNumberSelect\u3001CustomTreeSelect\u3001CustomCascader\u3001JsonEditor\u30
     `,paraId:12,tocIndex:13},{value:"\u5176\u4ED6\u6309\u94AE",paraId:12,tocIndex:13},{value:`
     `,paraId:12,tocIndex:13},{value:"ReactNode[]",paraId:12,tocIndex:13},{value:`
     `,paraId:12,tocIndex:13},{value:"-",paraId:12,tocIndex:13},{value:`
-  `,paraId:12,tocIndex:13}],Y={"src-newtable-demo-0":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-0",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-];
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-  />
-);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-1":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first}},{title:"Gender",dataIndex:"gender",enums:{male:"\u7537\u6027",female:"\u5973\u6027"}},{title:"Email",dataIndex:"email"}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-1",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    enums: {
-      male: "\u7537\u6027",
-      female: "\u5973\u6027",
-    },
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-];
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-  />
-);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-2":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first}},{title:"Gender",dataIndex:"gender",tagType:{male:"success",female:"error"}},{title:"Gender",dataIndex:"gender",tagType:{male:"default",female:"process"}},{title:"Gender",dataIndex:"gender",tagType:{male:"default",female:"process"},enums:{male:"\u7537\u6027",female:"\u5973\u6027"}}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-2",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    tagType: {
-      male: "success",
-      female: "error",
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    tagType: {
-      male: "default",
-      female: "process",
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    tagType: {
-      male: "default",
-      female: "process",
-    },
-    enums: {
-      male: "\u7537\u6027",
-      female: "\u5973\u6027",
-    },
-  },
-];
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-  />
-);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-3":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L;return V()().wrap(function(X){for(;;)switch(X.prev=X.next){case 0:return X.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=X.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(we){return we==null?void 0:we.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],j={type:"object",properties:{phone:{title:"Phone",type:"string",required:!0},gender:{title:"Gender",type:"string",enum:["male","female"],enumNames:["male","female"]}},displayType:"row"},L={buttons:[{type:"add",text:"\u65B0\u589E",schema:j},{type:"edit",text:"\u7F16\u8F91",schema:j},{type:"detail",text:"\u8BE6\u60C5",routerPath:"/components/global-config",field:"phone"},{type:"delete",text:"\u5220\u9664",field:"id.value",url:"/delete"}]},X.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results",operate:L})}});case 8:case"end":return X.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-3",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-import { Divider } from "antd";
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-];
-const schema = {
-  type: "object",
-  properties: {
-    phone: {
-      title: "Phone",
-      type: "string",
-      required: true,
-    },
-    gender: {
-      title: "Gender",
-      type: "string",
-      enum: ["male", "female"],
-      enumNames: ["male", "female"],
-    },
-  },
-  displayType: "row",
-};
-const operate = {
-  buttons: [
-    { type: "add", text: "\u65B0\u589E", schema },
-    { type: "edit", text: "\u7F16\u8F91", schema },
-    {
-      type: "detail",
-      text: "\u8BE6\u60C5",
-      routerPath: "/components/global-config",
-      field: "phone",
-    },
-    { type: "delete", text: "\u5220\u9664", field: "id.value", url: "/delete" },
-  ],
-};
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-    operate={operate}
-  />
-);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-4":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L,z,X,Te;return V()().wrap(function(Ze){for(;;)switch(Ze.prev=Ze.next){case 0:return Ze.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=Ze.sent,te=$.NewTable,Ze.next=6,e.e(486).then(e.t.bind(e,96486,23));case 6:return ge=Ze.sent,j=ge.default,L=[{title:"Name",dataIndex:"name",render:function(dt){return dt==null?void 0:dt.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],z={type:"object",properties:{phone:{title:"Phone",type:"string",required:!0},gender:{title:"Gender",type:"string",enum:["male","female"],enumNames:["male","female"]}},displayType:"row"},X=function(dt){var vt=function(){console.log(dt),window.open(j.get(dt,"row.picture.large"))};return n.createElement("a",{onClick:vt},"\u67E5\u770B\u5934\u50CF")},Te={buttons:[{type:"download",text:"get \u4E0B\u8F7D",downloadUrl:"https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip?id=${id}",field:"id.value",url:"/delete"},{type:"download",text:"post \u4E0B\u8F7D",headers:{a:1},method:"post",downloadUrl:"https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip",field:"phone",url:"/delete"},{type:"custom",widget:X}]},Ze.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:L,path:"results",operate:Te})}});case 13:case"end":return Ze.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-4",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-import { Divider } from "antd";
-import _ from "lodash";
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-];
-const schema = {
-  type: "object",
-  properties: {
-    phone: {
-      title: "Phone",
-      type: "string",
-      required: true,
-    },
-    gender: {
-      title: "Gender",
-      type: "string",
-      enum: ["male", "female"],
-      enumNames: ["male", "female"],
-    },
-  },
-  displayType: "row",
-};
-const CustomBtn = (props) => {
-  const callback = () => {
-    console.log(props);
-    window.open(_.get(props, "row.picture.large"));
-  };
-  return <a onClick={callback}>\u67E5\u770B\u5934\u50CF</a>;
-};
-const operate = {
-  buttons: [
-    {
-      type: "download",
-      text: "get \u4E0B\u8F7D",
-      downloadUrl:
-        "https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip?id=\${id}",
-      field: "id.value",
-      url: "/delete",
-    },
-    {
-      type: "download",
-      text: "post \u4E0B\u8F7D",
-      headers: { a: 1 },
-      method: "post",
-      downloadUrl:
-        "https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip",
-      field: "phone",
-      url: "/delete",
-    },
-    {
-      type: "custom",
-      widget: CustomBtn,
-    },
-  ],
-};
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-    operate={operate}
-  />
-);`},"@iauto/components":{type:"NPM",value:"0.0.1"},lodash:{type:"NPM",value:"4.17.21"}}}},"src-newtable-demo-5":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first},sorter:{multiple:1}},{title:"Gender",dataIndex:"gender",sorter:{multiple:10}},{title:"Email",dataIndex:"email",sorter:{multiple:1}},{title:"Phone",dataIndex:"phone",sorter:{multiple:1}}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-5",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-import { Button } from "antd";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-    sorter: {
-      multiple: 1, // \u4EFB\u610F\u6570\u503C\u5373\u53EF
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    sorter: {
-      multiple: 10,
-    },
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    sorter: {
-      multiple: 1,
-    },
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
-    sorter: {
-      multiple: 1,
-    },
-  },
-];
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-  />
-);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-6":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first},sorter:{multiple:!0}},{title:"Gender",dataIndex:"gender",sorter:!0},{title:"Email",dataIndex:"email",sorter:!0},{title:"Phone",dataIndex:"phone",sorter:{multiple:!0}}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-6",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-import { Button } from "antd";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-    sorter: {
-      multiple: true,
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    sorter: true,
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    sorter: true,
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
-    sorter: {
-      multiple: true,
-    },
-  },
-];
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-  />
-);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-7":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first},otherFilters:{type:"input"}},{title:"Gender",dataIndex:"gender",otherFilters:{type:"select",treeData:[{label:"A",value:"a"},{label:"B",value:"b"},{label:"C",value:"c"}]}},{title:"Email",dataIndex:"email",otherFilters:{type:"checkbox",field:"custom",treeData:[{label:"A",value:"a"},{label:"B",value:"b"},{label:"C",value:"c"}]}},{title:"Email",dataIndex:"email",otherFilters:{type:"dateRange",field:["start","end"]}}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-7",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-    otherFilters: {
-      type: "input",
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    otherFilters: {
-      type: "select",
-      treeData: [
-        { label: "A", value: "a" },
-        { label: "B", value: "b" },
-        { label: "C", value: "c" },
-      ],
-    },
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    otherFilters: {
-      type: "checkbox",
-      field: "custom",
-      treeData: [
-        { label: "A", value: "a" },
-        { label: "B", value: "b" },
-        { label: "C", value: "c" },
-      ],
-    },
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-    otherFilters: {
-      type: "dateRange",
-      field: ["start", "end"],
-    },
-  },
-];
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-  />
-);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-8":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L,z,X;return V()().wrap(function(we){for(;;)switch(we.prev=we.next){case 0:return we.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=we.sent,te=$.NewTable,we.next=6,Promise.all([e.e(755),e.e(634)]).then(e.bind(e,46634));case 6:return ge=we.sent,j=ge.Button,we.next=10,Promise.resolve().then(e.t.bind(e,67294,19));case 10:return L=we.sent,z=L.useRef,X=[{title:"Name",dataIndex:"name",render:function(nt){return nt==null?void 0:nt.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],we.abrupt("return",{default:function(){var nt=z(null),dt=function(){var yt;console.log(nt==null||(yt=nt.current)===null||yt===void 0?void 0:yt.checkedData)};return n.createElement(n.Fragment,null,n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:X,path:"results",rowSelect:!0,ref:nt}),n.createElement(j,{onClick:function(){return dt()}},"click me show the selected data"))}});case 14:case"end":return we.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-8",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-import { Button } from "antd";
-import { useRef } from "react";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-];
-export default () => {
-  const ref = useRef(null);
-  const show = () => {
-    console.log(ref?.current?.checkedData);
-  };
-  return (
-    <>
-      <NewTable
-        url="https://randomuser.me/api?pagination[total]=200&results=10"
-        columns={columns}
-        path="results"
-        rowSelect
-        ref={ref}
-      />
-      <Button onClick={() => show()}>click me show the selected data</Button>
-    </>
-  );
-};`},"@iauto/components":{type:"NPM",value:"0.0.1"},antd:{type:"NPM",value:"4.24.7"},react:{type:"NPM",value:"18.0.0"}}}},"src-newtable-demo-9":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results",needOrder:!0})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-9",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-import { Button } from "antd";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-];
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-    needOrder
-  />
-);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-10":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j;return V()().wrap(function(z){for(;;)switch(z.prev=z.next){case 0:return z.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=z.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(Te){return Te==null?void 0:Te.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"},{title:"Phone",dataIndex:"phone"}],j=[{title:"Name",dataIndex:"name",render:function(Te){return Te==null?void 0:Te.first},disabled:!0},{title:"Gender",dataIndex:"gender",disabled:!0},{title:"Email",dataIndex:"email"},{title:"Phone",dataIndex:"phone"}],z.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results",rowConfig:j})}});case 7:case"end":return z.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-10",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";
-import { Button } from "antd";
-
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
-  },
-];
-const rowConfig = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-    disabled: true,
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    disabled: true,
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
-  },
-];
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-    rowConfig={rowConfig}
-  />
+  `,paraId:12,tocIndex:13}],Y={"src-newtable-demo-0":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-0",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+  },\r
+];\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+  />\r
+);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-1":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first}},{title:"Gender",dataIndex:"gender",enums:{male:"\u7537\u6027",female:"\u5973\u6027"}},{title:"Email",dataIndex:"email"}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-1",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+    enums: {\r
+      male: "\u7537\u6027",\r
+      female: "\u5973\u6027",\r
+    },\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+  },\r
+];\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+  />\r
+);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-2":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first}},{title:"Gender",dataIndex:"gender",tagType:{male:"success",female:"error"}},{title:"Gender",dataIndex:"gender",tagType:{male:"default",female:"process"}},{title:"Gender",dataIndex:"gender",tagType:{male:"default",female:"process"},enums:{male:"\u7537\u6027",female:"\u5973\u6027"}}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-2",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+    tagType: {\r
+      male: "success",\r
+      female: "error",\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+    tagType: {\r
+      male: "default",\r
+      female: "process",\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+    tagType: {\r
+      male: "default",\r
+      female: "process",\r
+    },\r
+    enums: {\r
+      male: "\u7537\u6027",\r
+      female: "\u5973\u6027",\r
+    },\r
+  },\r
+];\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+  />\r
+);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-3":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L;return V()().wrap(function(X){for(;;)switch(X.prev=X.next){case 0:return X.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=X.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(we){return we==null?void 0:we.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],j={type:"object",properties:{phone:{title:"Phone",type:"string",required:!0},gender:{title:"Gender",type:"string",enum:["male","female"],enumNames:["male","female"]}},displayType:"row"},L={buttons:[{type:"add",text:"\u65B0\u589E",schema:j},{type:"edit",text:"\u7F16\u8F91",schema:j},{type:"detail",text:"\u8BE6\u60C5",routerPath:"/components/global-config",field:"phone"},{type:"delete",text:"\u5220\u9664",field:"id.value",url:"/delete"}]},X.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results",operate:L})}});case 8:case"end":return X.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-3",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+import { Divider } from "antd";\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+  },\r
+];\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    phone: {\r
+      title: "Phone",\r
+      type: "string",\r
+      required: true,\r
+    },\r
+    gender: {\r
+      title: "Gender",\r
+      type: "string",\r
+      enum: ["male", "female"],\r
+      enumNames: ["male", "female"],\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+const operate = {\r
+  buttons: [\r
+    { type: "add", text: "\u65B0\u589E", schema },\r
+    { type: "edit", text: "\u7F16\u8F91", schema },\r
+    {\r
+      type: "detail",\r
+      text: "\u8BE6\u60C5",\r
+      routerPath: "/components/global-config",\r
+      field: "phone",\r
+    },\r
+    { type: "delete", text: "\u5220\u9664", field: "id.value", url: "/delete" },\r
+  ],\r
+};\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+    operate={operate}\r
+  />\r
+);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-4":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L,z,X,Te;return V()().wrap(function(Ze){for(;;)switch(Ze.prev=Ze.next){case 0:return Ze.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=Ze.sent,te=$.NewTable,Ze.next=6,e.e(486).then(e.t.bind(e,96486,23));case 6:return ge=Ze.sent,j=ge.default,L=[{title:"Name",dataIndex:"name",render:function(dt){return dt==null?void 0:dt.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],z={type:"object",properties:{phone:{title:"Phone",type:"string",required:!0},gender:{title:"Gender",type:"string",enum:["male","female"],enumNames:["male","female"]}},displayType:"row"},X=function(dt){var vt=function(){console.log(dt),window.open(j.get(dt,"row.picture.large"))};return n.createElement("a",{onClick:vt},"\u67E5\u770B\u5934\u50CF")},Te={buttons:[{type:"download",text:"get \u4E0B\u8F7D",downloadUrl:"https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip?id=${id}",field:"id.value",url:"/delete"},{type:"download",text:"post \u4E0B\u8F7D",headers:{a:1},method:"post",downloadUrl:"https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip",field:"phone",url:"/delete"},{type:"custom",widget:X}]},Ze.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:L,path:"results",operate:Te})}});case 13:case"end":return Ze.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-4",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+import { Divider } from "antd";\r
+import _ from "lodash";\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+  },\r
+];\r
+const schema = {\r
+  type: "object",\r
+  properties: {\r
+    phone: {\r
+      title: "Phone",\r
+      type: "string",\r
+      required: true,\r
+    },\r
+    gender: {\r
+      title: "Gender",\r
+      type: "string",\r
+      enum: ["male", "female"],\r
+      enumNames: ["male", "female"],\r
+    },\r
+  },\r
+  displayType: "row",\r
+};\r
+const CustomBtn = (props) => {\r
+  const callback = () => {\r
+    console.log(props);\r
+    window.open(_.get(props, "row.picture.large"));\r
+  };\r
+  return <a onClick={callback}>\u67E5\u770B\u5934\u50CF</a>;\r
+};\r
+const operate = {\r
+  buttons: [\r
+    {\r
+      type: "download",\r
+      text: "get \u4E0B\u8F7D",\r
+      downloadUrl:\r
+        "https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip?id=\${id}",\r
+      field: "id.value",\r
+      url: "/delete",\r
+    },\r
+    {\r
+      type: "download",\r
+      text: "post \u4E0B\u8F7D",\r
+      headers: { a: 1 },\r
+      method: "post",\r
+      downloadUrl:\r
+        "https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip",\r
+      field: "phone",\r
+      url: "/delete",\r
+    },\r
+    {\r
+      type: "custom",\r
+      widget: CustomBtn,\r
+    },\r
+  ],\r
+};\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+    operate={operate}\r
+  />\r
+);`},"@iauto/components":{type:"NPM",value:"0.0.1"},lodash:{type:"NPM",value:"4.17.21"}}}},"src-newtable-demo-5":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first},sorter:{multiple:1}},{title:"Gender",dataIndex:"gender",sorter:{multiple:10}},{title:"Email",dataIndex:"email",sorter:{multiple:1}},{title:"Phone",dataIndex:"phone",sorter:{multiple:1}}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-5",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+import { Button } from "antd";\r
+\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+    sorter: {\r
+      multiple: 1, // \u4EFB\u610F\u6570\u503C\u5373\u53EF\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+    sorter: {\r
+      multiple: 10,\r
+    },\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+    sorter: {\r
+      multiple: 1,\r
+    },\r
+  },\r
+  {\r
+    title: "Phone",\r
+    dataIndex: "phone",\r
+    sorter: {\r
+      multiple: 1,\r
+    },\r
+  },\r
+];\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+  />\r
+);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-6":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first},sorter:{multiple:!0}},{title:"Gender",dataIndex:"gender",sorter:!0},{title:"Email",dataIndex:"email",sorter:!0},{title:"Phone",dataIndex:"phone",sorter:{multiple:!0}}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-6",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+import { Button } from "antd";\r
+\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+    sorter: {\r
+      multiple: true,\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+    sorter: true,\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+    sorter: true,\r
+  },\r
+  {\r
+    title: "Phone",\r
+    dataIndex: "phone",\r
+    sorter: {\r
+      multiple: true,\r
+    },\r
+  },\r
+];\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+  />\r
+);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-7":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first},otherFilters:{type:"input"}},{title:"Gender",dataIndex:"gender",otherFilters:{type:"select",treeData:[{label:"A",value:"a"},{label:"B",value:"b"},{label:"C",value:"c"}]}},{title:"Email",dataIndex:"email",otherFilters:{type:"checkbox",field:"custom",treeData:[{label:"A",value:"a"},{label:"B",value:"b"},{label:"C",value:"c"}]}},{title:"Email",dataIndex:"email",otherFilters:{type:"dateRange",field:["start","end"]}}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results"})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-7",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+    otherFilters: {\r
+      type: "input",\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+    otherFilters: {\r
+      type: "select",\r
+      treeData: [\r
+        { label: "A", value: "a" },\r
+        { label: "B", value: "b" },\r
+        { label: "C", value: "c" },\r
+      ],\r
+    },\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+    otherFilters: {\r
+      type: "checkbox",\r
+      field: "custom",\r
+      treeData: [\r
+        { label: "A", value: "a" },\r
+        { label: "B", value: "b" },\r
+        { label: "C", value: "c" },\r
+      ],\r
+    },\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+    otherFilters: {\r
+      type: "dateRange",\r
+      field: ["start", "end"],\r
+    },\r
+  },\r
+];\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+  />\r
+);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-8":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j,L,z,X;return V()().wrap(function(we){for(;;)switch(we.prev=we.next){case 0:return we.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=we.sent,te=$.NewTable,we.next=6,Promise.all([e.e(755),e.e(634)]).then(e.bind(e,46634));case 6:return ge=we.sent,j=ge.Button,we.next=10,Promise.resolve().then(e.t.bind(e,67294,19));case 10:return L=we.sent,z=L.useRef,X=[{title:"Name",dataIndex:"name",render:function(nt){return nt==null?void 0:nt.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],we.abrupt("return",{default:function(){var nt=z(null),dt=function(){var yt;console.log(nt==null||(yt=nt.current)===null||yt===void 0?void 0:yt.checkedData)};return n.createElement(n.Fragment,null,n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:X,path:"results",rowSelect:!0,ref:nt}),n.createElement(j,{onClick:function(){return dt()}},"click me show the selected data"))}});case 14:case"end":return we.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-8",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+import { Button } from "antd";\r
+import { useRef } from "react";\r
+\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+  },\r
+];\r
+export default () => {\r
+  const ref = useRef(null);\r
+  const show = () => {\r
+    console.log(ref?.current?.checkedData);\r
+  };\r
+  return (\r
+    <>\r
+      <NewTable\r
+        url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+        columns={columns}\r
+        path="results"\r
+        rowSelect\r
+        ref={ref}\r
+      />\r
+      <Button onClick={() => show()}>click me show the selected data</Button>\r
+    </>\r
+  );\r
+};`},"@iauto/components":{type:"NPM",value:"0.0.1"},antd:{type:"NPM",value:"4.24.7"},react:{type:"NPM",value:"18.0.0"}}}},"src-newtable-demo-9":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge;return V()().wrap(function(L){for(;;)switch(L.prev=L.next){case 0:return L.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=L.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(X){return X==null?void 0:X.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"}],L.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results",needOrder:!0})}});case 6:case"end":return L.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-9",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+import { Button } from "antd";\r
+\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+  },\r
+];\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+    needOrder\r
+  />\r
+);`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}},"src-newtable-demo-10":{component:n.lazy(le()(V()().mark(function ue(){var $,te,ge,j;return V()().wrap(function(z){for(;;)switch(z.prev=z.next){case 0:return z.next=2,Promise.all([e.e(755),e.e(486),e.e(687),e.e(414)]).then(e.bind(e,16384));case 2:return $=z.sent,te=$.NewTable,ge=[{title:"Name",dataIndex:"name",render:function(Te){return Te==null?void 0:Te.first}},{title:"Gender",dataIndex:"gender"},{title:"Email",dataIndex:"email"},{title:"Phone",dataIndex:"phone"}],j=[{title:"Name",dataIndex:"name",render:function(Te){return Te==null?void 0:Te.first},disabled:!0},{title:"Gender",dataIndex:"gender",disabled:!0},{title:"Email",dataIndex:"email"},{title:"Phone",dataIndex:"phone"}],z.abrupt("return",{default:function(){return n.createElement(te,{url:"https://randomuser.me/api?pagination[total]=200&results=10",columns:ge,path:"results",rowConfig:j})}});case 7:case"end":return z.stop()}},ue)}))),asset:{type:"BLOCK",id:"src-newtable-demo-10",refAtomIds:[],dependencies:{"index.tsx":{type:"FILE",value:`import { NewTable } from "@iauto/components";\r
+import { Button } from "antd";\r
+\r
+const columns = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+  },\r
+  {\r
+    title: "Phone",\r
+    dataIndex: "phone",\r
+  },\r
+];\r
+const rowConfig = [\r
+  {\r
+    title: "Name",\r
+    dataIndex: "name",\r
+    render(text) {\r
+      return text?.first;\r
+    },\r
+    disabled: true,\r
+  },\r
+  {\r
+    title: "Gender",\r
+    dataIndex: "gender",\r
+    disabled: true,\r
+  },\r
+  {\r
+    title: "Email",\r
+    dataIndex: "email",\r
+  },\r
+  {\r
+    title: "Phone",\r
+    dataIndex: "phone",\r
+  },\r
+];\r
+export default () => (\r
+  <NewTable\r
+    url="https://randomuser.me/api?pagination[total]=200&results=10"\r
+    columns={columns}\r
+    path="results"\r
+    rowConfig={rowConfig}\r
+  />\r
 );`},"@iauto/components":{type:"NPM",value:"0.0.1"}}}}},ne={title:"NewTable",toc:"content",filename:"src/newtable/index.md",description:"\u793A\u4F8B\u4F7F\u7528\u6A21\u62DF\u63A5\u53E3\u8FDB\u884C\u6570\u636E\u8BF7\u6C42\u7B80\u5355\u7684\u5C55\u793A\u6548\u679C\u3002"},pe=[{id:"newtable",depth:1,title:"NewTable"},{id:"\u57FA\u672C\u7528\u6CD5",depth:2,title:"\u57FA\u672C\u7528\u6CD5"},{id:"\u679A\u4E3E\u6620\u5C04",depth:2,title:"\u679A\u4E3E\u6620\u5C04"},{id:"tag-\u663E\u793A",depth:2,title:"Tag \u663E\u793A"},{id:"\u64CD\u4F5C\u680F\u914D\u7F6E",depth:2,title:"\u64CD\u4F5C\u680F\u914D\u7F6E"},{id:"\u589E\u5220\u6539\u67E5",depth:3,title:"\u589E\u5220\u6539\u67E5"},{id:"\u4E0B\u8F7D\u64CD\u4F5C--\u81EA\u5B9A\u4E49\u6309\u94AE",depth:3,title:"\u4E0B\u8F7D\u64CD\u4F5C & \u81EA\u5B9A\u4E49\u6309\u94AE"},{id:"\u6392\u5E8F",depth:2,title:"\u6392\u5E8F"},{id:"\u591A\u5B57\u6BB5\u6392\u5E8F",depth:4,title:"\u591A\u5B57\u6BB5\u6392\u5E8F"},{id:"\u5355\u5B57\u6BB5\u6392\u5E8F",depth:4,title:"\u5355\u5B57\u6BB5\u6392\u5E8F"},{id:"\u81EA\u5B9A\u4E49\u7B5B\u9009",depth:2,title:"\u81EA\u5B9A\u4E49\u7B5B\u9009"},{id:"\u884C\u9009\u62E9",depth:2,title:"\u884C\u9009\u62E9"},{id:"\u9996\u680F\u6DFB\u52A0\u5E8F\u53F7",depth:2,title:"\u9996\u680F\u6DFB\u52A0\u5E8F\u53F7"},{id:"\u914D\u7F6E\u5217",depth:2,title:"\u914D\u7F6E\u5217"},{id:"api",depth:2,title:"API"},{id:"newtable-1",depth:3,title:"NewTable"},{id:"operateprops",depth:3,title:"OperateProps"}],Ae=[{value:"\u793A\u4F8B\u4F7F\u7528\u6A21\u62DF\u63A5\u53E3\u8FDB\u884C\u6570\u636E\u8BF7\u6C42\u7B80\u5355\u7684\u5C55\u793A\u6548\u679C\u3002",paraId:0,tocIndex:1},{value:"\u4F7F\u7528",paraId:1,tocIndex:2},{value:"columns",paraId:1,tocIndex:2},{value:"\u4E2D\u7684",paraId:1,tocIndex:2},{value:"enums",paraId:1,tocIndex:2},{value:"\u5B57\u6BB5\u89C4\u5B9A\u597D\u6620\u5C04\u5173\u7CFB\uFF0C\u663E\u793A\u65E2\u5B9A\u7684\u6570\u636E\uFF0C\u53EF\u4EE5\u4E0E",paraId:1,tocIndex:2},{value:"tagType",paraId:1,tocIndex:2},{value:"\u4E00\u8D77\u4F7F\u7528\u3002",paraId:1,tocIndex:2},{value:"\u4F7F\u7528",paraId:2,tocIndex:3},{value:"columns",paraId:2,tocIndex:3},{value:"\u4E2D\u7684",paraId:2,tocIndex:3},{value:"tagType",paraId:2,tocIndex:3},{value:"\u5B57\u6BB5\u89C4\u5B9A",paraId:2,tocIndex:3},{value:"tag",paraId:2,tocIndex:3},{value:"\u7C7B\u578B\u4E0E\u884C\u6570\u636E\u5B57\u6BB5\u7684\u5BF9\u5E94\u5173\u7CFB\uFF0C\u4EE5",paraId:2,tocIndex:3},{value:"tag",paraId:2,tocIndex:3},{value:"\u5F62\u5F0F\u663E\u793A\u6570\u636E\uFF0C\u53EF\u4EE5\u4E0E",paraId:2,tocIndex:3},{value:"enums",paraId:2,tocIndex:3},{value:"\u4E00\u8D77\u4F7F\u7528\u3002",paraId:2,tocIndex:3},{value:"\u793A\u4F8B\u4F7F\u7528\u6A21\u62DF\u63A5\u53E3\u8FDB\u884C\u6570\u636E\u8BF7\u6C42\u7B80\u5355\u7684\u5C55\u793A\u6548\u679C\u3002",paraId:3,tocIndex:4},{value:"\u4E0B\u8F7D\u6309\u94AE\u7684\u5B9E\u9645\u6548\u679C\u4F1A\u6709\u504F\u5DEE\uFF0C\u4EE5\u63A7\u5236\u53F0\u7684\u4F20\u53C2\u548C\u8BF7\u6C42\u65B9\u5F0F\u4E3A\u51C6\u3002",paraId:4,tocIndex:6},{value:`
 \u5982\u679C\u5DF2\u6709\u7684\u6309\u94AE\u7C7B\u578B\u4E0D\u80FD\u6EE1\u8DB3\u4E1A\u52A1\u9700\u6C42\uFF0C\u53EF\u4EE5\u4F7F\u7528\u4E00\u4E2A`,paraId:4,tocIndex:6},{value:"React",paraId:4,tocIndex:6},{value:"\u7EC4\u4EF6\u4F5C\u4E3A\u81EA\u5B9A\u4E49\u6309\u94AE\uFF0C\u7EC4\u4EF6\u53EF\u4EE5\u4ECE",paraId:4,tocIndex:6},{value:"props",paraId:4,tocIndex:6},{value:"\u4E2D\u53D6\u5230",paraId:4,tocIndex:6},{value:"row(\u884C\u6570\u636E)",paraId:4,tocIndex:6},{value:"\u3001",paraId:4,tocIndex:6},{value:"reload(\u91CD\u7F6E\u9875\u7801\u5237\u65B0\u8868\u683C)",paraId:4,tocIndex:6},{value:" \u548C ",paraId:4,tocIndex:6},{value:"update(\u5F53\u524D\u9875\u7801\u5237\u65B0\u8868\u683C)",paraId:4,tocIndex:6},{value:"\u4EE5\u53CA ",paraId:4,tocIndex:6},{value:"checkedData(\u884C\u9009\u62E9\u6570\u636E)",paraId:4,tocIndex:6},{value:"\u3002",paraId:4,tocIndex:6},{value:"\u8FD9\u91CC\u7684\u6392\u5E8F\u6307\u7684\u662F\u540E\u7AEF\u6392\u5E8F\u3002",paraId:5,tocIndex:7},{value:"\u914D\u7F6E",paraId:6,tocIndex:8},{value:"columns",paraId:6,tocIndex:8},{value:"\u7684",paraId:6,tocIndex:8},{value:"sorter.multuple",paraId:6,tocIndex:8},{value:"\u81EA\u52A8\u5F00\u542F\u591A\u5B57\u6BB5\u6392\u5E8F\uFF0C\u5177\u4F53\u53C2\u6570\u89C1\u63A7\u5236\u53F0\u3002",paraId:6,tocIndex:8},{value:"\u914D\u7F6E",paraId:7,tocIndex:9},{value:"columns",paraId:7,tocIndex:9},{value:"\u7684",paraId:7,tocIndex:9},{value:"sorter.multuple",paraId:7,tocIndex:9},{value:"\u81EA\u52A8\u5F00\u542F\u591A\u5B57\u6BB5\u6392\u5E8F\uFF0C\u5177\u4F53\u8BF7\u6C42\u53C2\u6570\u89C1\u63A7\u5236\u53F0\u3002",paraId:7,tocIndex:9},{value:"\u8FD9\u91CC\u7684\u7B5B\u9009\u6307\u7684\u662F\u540E\u7AEF\u7B5B\u9009\u3002",paraId:8,tocIndex:10},{value:"\u914D\u7F6E",paraId:9,tocIndex:10},{value:"columns",paraId:9,tocIndex:10},{value:"\u7684",paraId:9,tocIndex:10},{value:"otherFilters",paraId:9,tocIndex:10},{value:"\u81EA\u52A8\u5F00\u542F\u5217\u7B5B\u9009\u529F\u80FD\uFF0C\u5177\u4F53\u8BF7\u6C42\u53C2\u6570\u89C1\u63A7\u5236\u53F0\u3002",paraId:9,tocIndex:10},{value:"\u6CE8\u610F",paraId:9,tocIndex:10},{value:"\uFF1A ",paraId:9,tocIndex:10},{value:"type",paraId:9,tocIndex:10},{value:"\u4E3A ",paraId:9,tocIndex:10},{value:"checkbox",paraId:9,tocIndex:10},{value:"\u65F6\uFF0C\u4F1A\u4EE5\u6570\u7EC4\u5F62\u5F0F\u4F20\u9012\u53C2\u6570\uFF0C\u5177\u4F53\u6548\u679C\u89C1",paraId:9,tocIndex:10},{value:"post",paraId:9,tocIndex:10},{value:"\u8BF7\u6C42\u65F6\u7684\u8BF7\u6C42\u53C2\u6570\uFF0C\u800C\u4F8B\u4E2D\u4F7F\u7528\u63A5\u53E3\u4E3A ",paraId:9,tocIndex:10},{value:"get",paraId:9,tocIndex:10},{value:"\u8BF7\u6C42\u3002",paraId:9,tocIndex:10},{value:"\u914D\u7F6E ",paraId:10,tocIndex:11},{value:"rowSelect",paraId:10,tocIndex:11},{value:" \u9879\u5F00\u542F\u884C\u9009\u62E9\uFF0C\u901A\u8FC7 ",paraId:10,tocIndex:11},{value:"ref",paraId:10,tocIndex:11},{value:" \u5F15\u7528\u83B7\u53D6\u5DF2\u9009\u6570\u636E\uFF0C\u63A7\u5236\u53F0\u67E5\u770B\u6253\u5370\u6570\u636E\u3002",paraId:10,tocIndex:11},{value:"\u6DFB\u52A0",paraId:11,tocIndex:12},{value:"needOrder",paraId:11,tocIndex:12},{value:"\u5C5E\u6027\u4E3A\u8868\u683C\u81EA\u52A8\u6DFB\u52A0\u7F16\u53F7\u3002",paraId:11,tocIndex:12},{value:"\u6DFB\u52A0",paraId:12,tocIndex:13},{value:"rowConfig",paraId:12,tocIndex:13},{value:"\u4E3A\u8868\u683C\u6DFB\u52A0",paraId:12,tocIndex:13},{value:"\u52A8\u6001\u914D\u7F6E\u5217",paraId:12,tocIndex:13},{value:"\u529F\u80FD\u3002",paraId:12,tocIndex:13},{value:`
   `,paraId:13,tocIndex:15},{value:`
