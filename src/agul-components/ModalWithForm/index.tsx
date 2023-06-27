@@ -15,7 +15,7 @@ const ModalWithForm: React.FC<{
   open: boolean;
   onSuccess: any;
   onCancel: any;
-  disabled: boolean;
+  disabled?: boolean;
   schema: any;
   widgets?: any;
   formData?: any;
@@ -28,7 +28,7 @@ const ModalWithForm: React.FC<{
   onCancel,
   schema,
   widgets,
-  disabled,
+  disabled = false,
   open,
   formData,
   forwordRef,

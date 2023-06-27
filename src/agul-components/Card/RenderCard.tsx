@@ -1,12 +1,10 @@
 import Form from "./Form";
 import Video from "./Video";
 import Map from "./Map";
-import FallsList from "./FallsList";
 import TableWithForm from "./TableWithForm";
 import Tabs from "./Tabs";
 import Detail from "./Detail";
 import Chart from "./Chart";
-import TreeWithForm from "./TreeWithForm";
 import StepsForm from "./StepsForm";
 import CustomCard from "./CustomCard";
 import { RGL_LAYOUT_TYPE, ANTD_LAYOUT_TYPE } from "@/agul-utils/constant";
@@ -27,16 +25,12 @@ const RenderCurrentCard: any = (data: any, layoutType: string) => {
     return <Video {...Props} />;
   } else if (data?.cardType === "map") {
     return <Map {...Props} />;
-  } else if (data?.cardType === "falls-list") {
-    return <FallsList {...Props} />;
   } else if (data?.cardType === "form-table") {
     return <TableWithForm {...Props} />;
   } else if (data?.cardType === "tabs") {
     return <Tabs {...Props} />;
   } else if (data?.cardType === "detail") {
     return <Detail {...Props} />;
-  } else if (data?.cardType === "form-tree") {
-    return <TreeWithForm {...Props} />;
   } else if (data?.cardType === "steps-form") {
     return <StepsForm {...Props} />;
   } else if (data?.cardType === "chart") {

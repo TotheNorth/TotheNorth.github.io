@@ -1,7 +1,13 @@
 import { defineConfig } from "dumi";
-
 const repo = "agul-library";
 export default defineConfig({
+  proxy: {
+    "/api": {
+      target: "https://cloud-daq.iauto.com/",
+      changeOrigin: true,
+      // pathRewrite: { "^/api": "" },
+    },
+  },
   resolve: {
     docDirs: ["does"],
   },
@@ -9,7 +15,7 @@ export default defineConfig({
   hash: true,
   // 使用 webpack 5进行构建。
   themeConfig: {
-    name: "@iauto/components",
+    name: "@iauto/react-ui",
     logo: false,
     nav: [
       { title: "介绍", link: "/use/design" },
@@ -57,6 +63,18 @@ export default defineConfig({
               link: "/components/modal-form",
             },
             {
+              title: "详情",
+              link: "/components/detail1",
+            },
+            {
+              title: "图表",
+              link: "/components/chartx",
+            },
+            {
+              title: "网络请求",
+              link: "/components/request",
+            },
+            {
               title: "全局提示",
               link: "/components/message",
             },
@@ -88,7 +106,7 @@ export default defineConfig({
           title: "其他",
           children: [
             {
-              title: "微前端",
+              title: "微前端配置说明",
               link: "/others/mic#配置方式",
             },
           ],
@@ -109,6 +127,6 @@ export default defineConfig({
       },
     ],
   ],
-  base: `/${repo}/`,
+  // base: `/${repo}/`,
   publicPath: `/${repo}/`,
 });

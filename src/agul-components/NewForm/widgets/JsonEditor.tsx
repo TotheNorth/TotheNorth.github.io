@@ -23,7 +23,8 @@ const JsonEditor = (props: any) => {
       ...schema,
       rules: [
         {
-          validator: (a: any, value: string) => {
+          validator: (options: any, value: string) => {
+            if (!value) return true;
             try {
               JSON.stringify(JSON.parse(value), null, "\t");
               return true;

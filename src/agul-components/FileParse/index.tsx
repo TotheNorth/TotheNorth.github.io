@@ -2,6 +2,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import { json } from "@codemirror/lang-json";
 import { useEffect, useState } from "react";
 import GloablLoading from "@/agul-methods/Loading";
+import useNewRequest from "@/agul-hooks/useNewRequest";
 
 const FileParse: React.FC<{
   url: string;
@@ -9,24 +10,28 @@ const FileParse: React.FC<{
   params?: object;
 }> = ({ url, method, params = {}, ...otherProps }) => {
   const [data, setData] = useState<any>("");
+  const request = useNewRequest();
   useEffect(() => {
     if (url) {
-      const options: any = {};
-      if (method === "post") {
+      const options: any = {
+        responseType: "text",
+        prefix: "",
+      };
+      if (method === "get" || !method) {
+        options.method = "get";
+        options.params = params;
+      } else {
         options.method = "post";
-        options.body = JSON.stringify(params);
+        options.data = params;
       }
       GloablLoading.show();
-      fetch(url, options)
-        .then((res) => res.text())
-        .then((res) => {
-          GloablLoading.hide();
+      request(url, options)
+        .then((res: any) => {
           setData(res);
         })
-        .catch((err) => {
+        .catch((err: any) => {
           console.error(err.message);
           setData("");
-          GloablLoading.hide();
         });
     }
   }, [url]);

@@ -4,35 +4,33 @@ toc: content
 
 # NewTable
 
-## 基本用法
+## 基本使用
 
 示例使用模拟接口进行数据请求简单的展示效果。
 
 ```jsx
-import { NewTable } from "@iauto/components";
-
+import { NewTable } from "@iauto/react-ui";
+import { Select } from "antd";
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
+    title: "车型名",
+    dataIndex: "brandName",
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
+    title: "车型 CODE",
+    dataIndex: "code",
   },
   {
-    title: "Email",
-    dataIndex: "email",
+    title: "更新时间",
+    dataIndex: "updateTime",
+    format: "YYYY-MM-DD HH:mm:ss",
   },
 ];
 export default () => (
   <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
+    url="/api/vehicle-model-ms/v1/model"
     columns={columns}
-    path="results"
+    path="data"
   />
 );
 ```
@@ -42,7 +40,7 @@ export default () => (
 使用`columns`中的`enums`字段规定好映射关系，显示既定的数据，可以与`tagType`一起使用。
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 
 const columns = [
   {
@@ -67,7 +65,7 @@ const columns = [
 ];
 export default () => (
   <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
+    url="https://randomuser.me/api?pagination[total]=200&results=10&pageSize=8&pageNumber=1"
     columns={columns}
     path="results"
   />
@@ -79,7 +77,7 @@ export default () => (
 使用`columns`中的`tagType`字段规定`tag`类型与行数据字段的对应关系，以`tag`形式显示数据，可以与`enums`一起使用。
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 
 const columns = [
   {
@@ -120,7 +118,7 @@ const columns = [
 ];
 export default () => (
   <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
+    url="https://randomuser.me/api?pagination[total]=200&results=10&pageSize=8&pageNumber=1"
     columns={columns}
     path="results"
   />
@@ -134,25 +132,24 @@ export default () => (
 ### 增删改查
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 import { Divider } from "antd";
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
+    title: "车型名",
+    dataIndex: "brandName",
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
+    title: "车型 CODE",
+    dataIndex: "code",
   },
   {
-    title: "Email",
-    dataIndex: "email",
+    title: "更新时间",
+    dataIndex: "updateTime",
+    format: "YYYY-MM-DD HH:mm:ss",
   },
 ];
+
 const schema = {
   type: "object",
   properties: {
@@ -185,9 +182,9 @@ const operate = {
 };
 export default () => (
   <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
+    url="/api/vehicle-model-ms/v1/model"
     columns={columns}
-    path="results"
+    path="data"
     operate={operate}
   />
 );
@@ -199,26 +196,25 @@ export default () => (
 如果已有的按钮类型不能满足业务需求，可以使用一个`React`组件作为自定义按钮，组件可以从`props`中取到`row(行数据)`、`reload(重置页码刷新表格)` 和 `update(当前页码刷新表格)`以及 `checkedData(行选择数据)`。
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 import { Divider } from "antd";
 import _ from "lodash";
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
+    title: "车型名",
+    dataIndex: "brandName",
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
+    title: "车型 CODE",
+    dataIndex: "code",
   },
   {
-    title: "Email",
-    dataIndex: "email",
+    title: "更新时间",
+    dataIndex: "updateTime",
+    format: "YYYY-MM-DD HH:mm:ss",
   },
 ];
+
 const schema = {
   type: "object",
   properties: {
@@ -248,7 +244,7 @@ const operate = {
     {
       type: "download",
       text: "get 下载",
-      downloadUrl:
+      url:
         "https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip?id=${id}",
       field: "id.value",
       url: "/delete",
@@ -258,7 +254,7 @@ const operate = {
       text: "post 下载",
       headers: { a: 1 },
       method: "post",
-      downloadUrl:
+      url:
         "https://github.com/sensorsdata/sa-sdk-javascript/archive/refs/tags/v1.25.2.zip",
       field: "phone",
       url: "/delete",
@@ -271,9 +267,9 @@ const operate = {
 };
 export default () => (
   <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
+    url="/api/vehicle-model-ms/v1/model"
     columns={columns}
-    path="results"
+    path="data"
     operate={operate}
   />
 );
@@ -288,47 +284,39 @@ export default () => (
 配置`columns`的`sorter.multuple`自动开启多字段排序，具体参数见控制台。
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 import { Button } from "antd";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
+    title: "车型名",
+    dataIndex: "brandName",
     sorter: {
-      multiple: 1, // 任意数值即可
+      multiple: 0, // 任意数值即可
     },
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
+    title: "车型 CODE",
+    dataIndex: "code",
     sorter: {
-      multiple: 10,
+      multiple: 0, // 任意数值即可
     },
   },
   {
-    title: "Email",
-    dataIndex: "email",
+    title: "更新时间",
+    dataIndex: "updateTime",
+    format: "YYYY-MM-DD HH:mm:ss",
     sorter: {
-      multiple: 1,
-    },
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
-    sorter: {
-      multiple: 1,
+      multiple: 0, // 任意数值即可
     },
   },
 ];
+
 export default () => (
   <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
+    url="/api/vehicle-model-ms/v1/model"
     columns={columns}
-    path="results"
+    path="data"
   />
 );
 ```
@@ -338,43 +326,36 @@ export default () => (
 配置`columns`的`sorter.multuple`自动开启多字段排序，具体请求参数见控制台。
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 import { Button } from "antd";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
+    title: "车型名",
+    dataIndex: "brandName",
     sorter: {
       multiple: true,
     },
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
-    sorter: true,
+    title: "车型 CODE",
+    dataIndex: "code",
   },
   {
-    title: "Email",
-    dataIndex: "email",
-    sorter: true,
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
+    title: "更新时间",
+    dataIndex: "updateTime",
+    format: "YYYY-MM-DD HH:mm:ss",
     sorter: {
       multiple: true,
     },
   },
 ];
+
 export default () => (
   <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
+    url="/api/vehicle-model-ms/v1/model"
     columns={columns}
-    path="results"
+    path="data"
   />
 );
 ```
@@ -387,34 +368,19 @@ export default () => (
 `注意`： `type`为 `checkbox`时，会以数组形式传递参数，具体效果见`post`请求时的请求参数，而例中使用接口为 `get`请求。
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
+    title: "车系名",
+    dataIndex: "brandName",
     otherFilters: {
       type: "input",
     },
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
-    otherFilters: {
-      type: "select",
-      treeData: [
-        { label: "A", value: "a" },
-        { label: "B", value: "b" },
-        { label: "C", value: "c" },
-      ],
-    },
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
+    title: "车型名",
+    dataIndex: "name",
     otherFilters: {
       type: "checkbox",
       field: "custom",
@@ -426,19 +392,32 @@ const columns = [
     },
   },
   {
-    title: "Email",
-    dataIndex: "email",
+    title: "车型 CODE",
+    dataIndex: "code",
+    otherFilters: {
+      type: "select",
+      treeData: [
+        { label: "A", value: "a" },
+        { label: "B", value: "b" },
+        { label: "C", value: "c" },
+      ],
+    },
+  },
+  {
+    title: "创建时间",
+    dataIndex: "createTime",
     otherFilters: {
       type: "dateRange",
       field: ["start", "end"],
     },
   },
 ];
+
 export default () => (
   <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
+    url="/api/vehicle-model-ms/v1/model"
     columns={columns}
-    path="results"
+    path="data"
   />
 );
 ```
@@ -448,25 +427,26 @@ export default () => (
 配置 `rowSelect` 项开启行选择，通过 `ref` 引用获取已选数据，控制台查看打印数据。
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 import { Button } from "antd";
 import { useRef } from "react";
 
 const columns = [
   {
-    title: "Name",
+    title: "车系名",
+    dataIndex: "brandName",
+  },
+  {
+    title: "车型名",
     dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
+    title: "车型 CODE",
+    dataIndex: "code",
   },
   {
-    title: "Email",
-    dataIndex: "email",
+    title: "创建时间",
+    dataIndex: "createTime",
   },
 ];
 export default () => {
@@ -477,9 +457,9 @@ export default () => {
   return (
     <>
       <NewTable
-        url="https://randomuser.me/api?pagination[total]=200&results=10"
+        url="/api/vehicle-model-ms/v1/model"
         columns={columns}
-        path="results"
+        path="data"
         rowSelect
         ref={ref}
       />
@@ -494,31 +474,33 @@ export default () => {
 添加`needOrder`属性为表格自动添加编号。
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 import { Button } from "antd";
 
 const columns = [
   {
-    title: "Name",
+    title: "车系名",
+    dataIndex: "brandName",
+  },
+  {
+    title: "车型名",
     dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
+    title: "车型 CODE",
+    dataIndex: "code",
   },
   {
-    title: "Email",
-    dataIndex: "email",
+    title: "创建时间",
+    dataIndex: "createTime",
   },
 ];
+
 export default () => (
   <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
+    url="/api/vehicle-model-ms/v1/model"
     columns={columns}
-    path="results"
+    path="data"
     needOrder
   />
 );
@@ -529,61 +511,108 @@ export default () => (
 添加`rowConfig`为表格添加`动态配置列`功能。
 
 ```jsx
-import { NewTable } from "@iauto/components";
+import { NewTable } from "@iauto/react-ui";
 import { Button } from "antd";
+import { useRef } from "react";
 
 const columns = [
   {
-    title: "Name",
+    title: "车系名",
+    dataIndex: "brandName",
+  },
+  {
+    title: "车型名",
     dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
+    title: "车型 CODE",
+    dataIndex: "code",
   },
   {
-    title: "Email",
-    dataIndex: "email",
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
+    title: "创建时间",
+    dataIndex: "createTime",
   },
 ];
 const rowConfig = [
   {
-    title: "Name",
+    title: "车系名",
+    dataIndex: "brandName",
+  },
+  {
+    title: "车型名",
     dataIndex: "name",
-    render(text) {
-      return text?.first;
-    },
-    disabled: true,
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
-    disabled: true,
+    title: "车型 CODE",
+    dataIndex: "code",
   },
   {
-    title: "Email",
-    dataIndex: "email",
-  },
-  {
-    title: "Phone",
-    dataIndex: "phone",
+    title: "创建时间",
+    dataIndex: "createTime",
   },
 ];
-export default () => (
-  <NewTable
-    url="https://randomuser.me/api?pagination[total]=200&results=10"
-    columns={columns}
-    path="results"
-    rowConfig={rowConfig}
-  />
-);
+export default () => {
+  const boxRef = useRef(null);
+  return (
+    <div>
+      <div id="rowConfigBox" ref={boxRef}></div>
+      <NewTable
+        url="/api/vehicle-model-ms/v1/model"
+        columns={columns}
+        path="data"
+        rowConfig={rowConfig}
+        rowConfigBox={boxRef.current}
+      />
+    </div>
+  );
+};
+```
+
+## 导出
+
+添加`rowConfig`为表格添加`动态配置列`功能。
+
+```jsx
+import { NewTable } from "@iauto/react-ui";
+import { Button } from "antd";
+import { useRef } from "react";
+
+const columns = [
+  {
+    title: "车系名",
+    dataIndex: "brandName",
+  },
+  {
+    title: "车型名",
+    dataIndex: "name",
+  },
+  {
+    title: "车型 CODE",
+    dataIndex: "code",
+  },
+  {
+    title: "创建时间",
+    dataIndex: "createTime",
+  },
+];
+export default () => {
+  const boxRef = useRef(null);
+  const exportBtn = {
+    url: "/*abc*",
+  };
+  return (
+    <div>
+      <div id="rowConfigBox" ref={boxRef}></div>
+      <NewTable
+        url="/api/vehicle-model-ms/v1/model"
+        columns={columns}
+        path="data"
+        exportBox={boxRef.current}
+        exportBtn={exportBtn}
+      />
+    </div>
+  );
+};
 ```
 
 ## API
@@ -624,13 +653,13 @@ export default () => (
   <tr>
     <td>params</td>
     <td>额外的请求的参数</td>
-    <td>Record&lt;string, any&gt;</td>
+    <td>Record&lt;string, any&gt; | undefined</td>
     <td>-</td>
   </tr>
    <tr>
-    <td>extraPagination</td>
-    <td>额外的分页器配置项，参考 <a href="https://4x.ant.design/components/table-cn/#pagination" target="_blank">antd分页器</a></td>
-    <td>object</td>
+    <td><div style="white-space:nowrap;">extraPagination</div></td>
+    <td>额外的分页器配置项，参考 <a href="https://4x.ant.design/components/table-cn/#pagination">antd分页器</a></td>
+    <td>object | undefined</td>
     <td>
       <div style="white-space:nowrap;">
       {</br>
@@ -670,9 +699,9 @@ export default () => (
     <td>-</td>
   </tr>
   <tr>
-    <td><div style="white-space:nowrap;">tableOperateBoxId</div></td>
-    <td>为配置列（rowConfig）功能按钮选定一个父容器，这里填该父容器的 id</td>
-    <td>string</td>
+    <td><div style="white-space:nowrap;">rowConfigBox</div></td>
+    <td>若 rowConfig 存在，则为配置列功能按钮选定一个父容器，可以是父容器的 dom 对象也可以是父容器的 id，不填则绝对定位放置至表格右上方</td>
+    <td>string | HTMLElement</td>
     <td>-</td>
   </tr>
   <tr>
@@ -684,8 +713,8 @@ export default () => (
   <tr>
     <td>childTable</td>
     <td>子表格配置</td>
-    <td>boolean</td>
-    <td>false</td>
+    <td></td>
+    <td></td>
   </tr>
   <tr>
     <td>height</td>
@@ -696,7 +725,7 @@ export default () => (
   <tr>
     <td>rowKey</td>
     <td>同antd-rowKey，表格行 key 的取值，可以是字符串或一个函数</td>
-    <td>string | function(record): string</td>
+    <td><div style="white-space:nowrap;">string | function(record): string</div></td>
     <td>'id'</td>
   </tr>
   <tr>
@@ -708,17 +737,65 @@ export default () => (
   <tr>
     <td>exportBtn</td>
     <td>导出按钮</td>
-    <td>-</td>
+    <td>ExportBtnProps</td>
     <td>-</td>
   </tr>
   </tr>
   <tr>
-    <td>tableExportBoxId</td>
-    <td>为导出（exportBtn）功能按钮选定一个父容器，这里填该父容器的 id</td>
+    <td>exportBox</td>
+    <td>若 exportBtn 项存在，则为配置列功能按钮选定一个父容器，可以是父容器的 dom 对象也可以是父容器的 id，不填则绝对定位放置至表格右上方</td>
     <td>string</td>
     <td>-</td>
   </tr>
 
+</table>
+
+### ExportBtnProps
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th>默认值</th>
+  </tr>
+  <tr>
+    <td>text</td>
+    <td>导出按钮文案</td>
+    <td>ReactNode</td>
+    <td>'导出'</td>
+  </tr>
+  <tr>
+    <td>url</td>
+    <td>导出的接口地址</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>params</td>
+    <td>导出时额外的请求的参数</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>method</td>
+    <td>导出时的请求方式</td>
+    <td>'get'|'post'</td>
+    <td>'get'</td>
+  </tr>
+  <tr>
+    <td>headers</td>
+    <td>导出时额外的请求头</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+   <tr>
+    <td>filename</td>
+    <td>文件名，从响应头中取不到文件名时会使用该字段作为文件名</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  
 </table>
 
 ### OperateProps
@@ -739,8 +816,8 @@ export default () => (
   <tr>
     <td>text</td>
     <td>按钮文案，自定义按钮时该配置无效</td>
+    <td>ReactNode</td>
     <td>'新增'/'编辑'/'详情'/'删除'/'下载'</td>
-    <td>-</td>
   </tr>
   <tr>
     <td><div style="white-space:nowrap;">routerPath</div></td>
@@ -753,8 +830,8 @@ export default () => (
     <td>
       当 routerPath 存在时，field 会与 row[field] ( row 指行数据) 组成<code>键值对</code>，这个键值对作为路由参数传递。</br> </br>
       当 routerPath 不存在时，要分情况讨论：</br> </br>
-      1. <code>新增/编辑/详情/删除</code>时: 如果 field 不存在则直接使用 url 进行<code>提交/详情</code>请求。如果 field 存在且 url 中存在 {xxx} 字符串则 {xxx} 字符串会被替换为 row[feild] 值；如果 url 中不存在 {xxx} 字符串且请求类型( method )为 post 或 put 则 feild 与 row[feild] 值组成的键值对会被加入到 body 中然后进行<code>提交/详情</code>请求。</br></br>
-      2. <code>下载</code>时: 如果 field 不存在则不允许下载；如果 field 存在且 url 中存在 {xxx} 字符串则 {xxx} 字符串会被替换为 row[feild] 值( url 不存在 {xxx} 字符串则不替换，如果请求类型( method )为 post 或 put 则 feild 与 row[feild] 值组成的键值对会被加入到 body 中)进行请求；如果 url 不存在则会取 row[feild] 值作为请求地址。</br>
+      1. <code>新增/编辑/详情/删除</code>时: 如果 field 不存在则直接使用 url 进行请求。如果 field 存在且 url 中存在 {xxx} 字符串则 {xxx} 字符串会被替换为 row[feild] 值；如果 url 中不存在 {xxx} 字符串且请求类型( method )为 post 或 put 则 feild 与 row[feild] 值组成的键值对会被加入到 body 中然后进行请求。</br></br>
+      2. <code>下载</code>时: 如果 field 存在且 url 中存在 {xxx} 字符串则 {xxx} 字符串会被替换为 row[feild] 值，如果 url 中不存在 {xxx} 字符串且请求类型( method )为 post 则 feild 与 row[feild] 值组成的键值对会被加入到 body 中进行请求；如果 url 不存在则会取 row[feild] 值作为下载的请求地址，两者均不存在则不允许下载。</br>
       </br>
     注：xxx 指可以是任何字符串，例如一个 url 是 '/api/getData:{id}' 且 row[feild] 为 1，则最后实际请求的地址为 '/api/getData:10'
     </td>
@@ -765,7 +842,7 @@ export default () => (
     <td>schema</td>
     <td>当 routerPath 不存在时，以弹窗的形式进行<code>新增/编辑/查看详情</code>，schema表示对表单的描述</td>
     <td><a href="/components/newform#newform-1">schema</a></td>
-    <td>'id'</td>
+    <td>-</td>
   </tr>
    <tr>   
     <td>widgets</td>
@@ -789,7 +866,7 @@ export default () => (
   </tr>
   <tr>
     <td>method</td>
-    <td><code>新增/编辑/删除</code> 操作允许规定请求方式/td>
+    <td><code>新增/编辑/删除</code> 操作允许规定请求方式
     <td>string</td>
     <td><div style="white-space:nowrap;">'post'/'put'/'delete'</div></td>
   </tr>

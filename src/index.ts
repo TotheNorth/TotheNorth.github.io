@@ -7,3 +7,7 @@ export { default as ModalWithForm } from "./agul-components/ModalWithForm";
 export { default as Navigation } from "./agul-components/Navigation";
 export { default as VirtualTable } from "./agul-components/VirtualTable";
 export { default as PageContainer } from "./agul-components/PageContainer";
+export { default as Detail } from "./agul-components/Detail";
+export { default as Chart } from "./agul-components/Chart";
+export { default as useNewRequest } from "./agul-hooks/useNewRequest";
+export { ConfigProvider } from "./agul-utils/context";

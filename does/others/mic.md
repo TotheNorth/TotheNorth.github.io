@@ -8,9 +8,9 @@ toc: content
 
 ## 配置方式
 
-由于基本的配置方式和流程在上述的相关文档中已经比较完整，但是具体到相关项目中还是有一些细节需要说明，这里以 umi 为前端框架介绍一个微前端完整的配置流程。
+由于基本的配置方式和流程在上述的相关文档中已经比较完整，但是具体到相关项目中还是有一些细节需要说明，这里以 umi 为前端框架为例子、介绍一个唯一 id 为 equipment-ms 的微前端子应用注册到主应用的配置流程。
 
-### 注册
+### 子应用在父应用中的注册
 
 主应用在`config/config.ts`或 `.umirc.ts`文件中进行注册：
 
@@ -37,6 +37,25 @@ export default {
 export default {
   qiankun: {
     slave: {},
+  },
+};
+```
+
+### 子应用 webpack 相关配置
+
+子应用在`config/config.ts`或 `.umirc.ts`文件中进行注册：
+
+```
+export default {
+  // 指定子应用的资源的基础路径
+  publicPath:'/equipment-ms/',
+  chainWebpack: function (config, { webpack, env, createCSSRule }) {
+    if (env === "production") {
+      // 关闭代码拆分，防止子应用资源加载失败
+      config
+        .plugin("limitChunkCountPlugin")
+        .use(webpack.optimize.LimitChunkCountPlugin, [{ maxChunks: 1 }]);
+    }
   },
 };
 ```

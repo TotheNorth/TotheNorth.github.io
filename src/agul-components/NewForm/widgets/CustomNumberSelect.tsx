@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useUpdateEffect } from "ahooks";
 import { Select } from "antd";
 import _ from "lodash";
-import request from "@/agul-utils/request";
-import { AgulWrapperConfigContext } from "@/agul-utils/context";
+import useNewRequest from "@/agul-hooks/useNewRequest";
+import { SelectMultipleMode } from "@/agul-utils/constant";
 
-const CustomDateTime = (props: any) => {
+const CustomNumberSelect = (props: any) => {
   const {
     onChange,
     value,
@@ -14,11 +14,11 @@ const CustomDateTime = (props: any) => {
     addons: { dataPath, getFieldError, dependValues = [], isFieldsTouched },
     allowClear,
     placeholder,
+    mode,
   } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const [dataSource, setDataSource] = useState<any[]>([]);
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
+  const request = useNewRequest();
   const getData = () => {
     const params = treeData?.params ? treeData?.params : {};
     _.forEach(dependencies, (item, index) => {
@@ -30,7 +30,6 @@ const CustomDateTime = (props: any) => {
     request(treeData?.url, {
       method: "get",
       params,
-      headers: { ...requestHeaders },
     })
       .then((res) => {
         const data = _.map(_.get(res, treeData?.path || "data", []), (x) => ({
@@ -40,7 +39,7 @@ const CustomDateTime = (props: any) => {
         setDataSource(data);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setDataSource([]);
         setLoading(false);
       });
@@ -56,6 +55,7 @@ const CustomDateTime = (props: any) => {
   }, dependValues);
   return (
     <Select
+      mode={mode === SelectMultipleMode ? mode : undefined}
       status={!_.isEmpty(getFieldError(dataPath)) ? "error" : ""}
       style={{ width: "100%" }}
       value={value}
@@ -68,4 +68,4 @@ const CustomDateTime = (props: any) => {
     />
   );
 };
-export default CustomDateTime;
+export default CustomNumberSelect;

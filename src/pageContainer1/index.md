@@ -4,15 +4,18 @@ toc: content
 
 # PageContainer
 
+## 基本使用
+
 使用`js对象`或者`json数据`对页面的内容和布局进行描述，进而渲染出完整页面；
-目前已有`Form`、`TableWithForm`、`StepsForm`、`Detail`、`Tabs`、`Chart`、`CustomCard`等几种`可配置 Card`，可以使用 [antd-layout](https://4x.ant.design/components/layout-cn/) 或 [react-grid-layout](https://github.com/react-grid-layout/react-grid-layout) 对已有的 Card 进行布局。
+目前已有`Form`、`TableWithForm`、`StepsForm`、`Detail`、`Tabs`、`Chart`、`CustomCard`等几种`可配置 Card`，可以使用 [antd 栅格布局](https://4x.ant.design/components/grid-cn/) 或 [react-grid-layout](https://github.com/react-grid-layout/react-grid-layout) 对已存的 Card 进行布局。通常的页面使用`antd 栅格布局`即可，一些对布局要求比较高的页面（例如 dashboard 多图表页面）可以考虑使用 `rgl`进行布局配置。 `antd栅格`和`rgl`两种布局方式的主要差异是在于：antd 的布局元素不定高、rgl 的布局元素定高，antd 使用浮动（flex）布局、rgl 使用绝对定位布局。cards.layout.value 的布局项与 cards.values 的卡片项一一对应控制布局。</br>
+每一种 Card 类型都有其独特的配置，因此在每一种 Card 例子配置后会单独介绍它的配置方案。
 
 ## 单个表单表格卡片
 
 表单表格卡片`cardType` 为 `"form-table"`
 
 ```jsx
-import { PageContainer } from "@iauto/components";
+import { PageContainer } from "@iauto/react-ui";
 const initData = {
   cards: {
     layout: {
@@ -23,11 +26,10 @@ const initData = {
       {
         cardType: "form-table",
         component: {
-          url: "https://randomuser.me/api?pagination[total]=200&results=10",
-          path: "results",
+          url: "/api/vehicle-model-ms/v1/model",
+          path: "data",
           pagePath: "pageable",
           value: {
-            dataSource: [],
             formConfig: {
               schema: {
                 type: "object",
@@ -82,23 +84,17 @@ const initData = {
               },
               columns: [
                 {
-                  title: "Name",
-                  dataIndex: "name",
-                  render(text) {
-                    return text?.first;
-                  },
+                  title: "车型名",
+                  dataIndex: "brandName",
                 },
                 {
-                  title: "Gender",
-                  dataIndex: "gender",
-                  enums: {
-                    male: "男性",
-                    female: "女性",
-                  },
+                  title: "车型 CODE",
+                  dataIndex: "code",
                 },
                 {
-                  title: "Email",
-                  dataIndex: "email",
+                  title: "更新时间",
+                  dataIndex: "updateTime",
+                  format: "YYYY-MM-DD HH:mm:ss",
                 },
               ],
             },
@@ -111,12 +107,195 @@ const initData = {
 export default () => <PageContainer data={initData} />;
 ```
 
+### 表单表格卡片 API
+
+`cardType` 为 `"form-table"`，然后是`component`：
+
+#### component
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th>默认值</th>
+  </tr>
+  <tr>
+    <td>url</td>
+    <td>必填，表格资源接口地址</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>path</td>
+    <td>表格资源在接口出参中的路径</td>
+   <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>pagePath</td>
+    <td>表格分页数据在接口出参中的路径</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>method</td>
+    <td>表格数据请求方式</td>
+    <td><div style="white-space:nowrap;">'get' | 'post'</div></td>
+    <td>'get'</td>
+  </tr>
+  <tr>
+    <td>params</td>
+    <td>额外配置参数，会加到请求参数中</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+   <tr>
+    <td>value</td>
+    <td>表单表格的详细配置，详细见下文</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+</table>
+
+`component`中的`value`:
+
+#### value
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th><div style="white-space:nowrap;">默认值</div></th>
+  </tr>
+  <tr>
+    <td>formConfig</td>
+    <td>表格表单的顶部表单栏的配置项</td>
+    <td><div style="white-space:nowrap;"><a href="#formconfigprops">object</a></div></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">tableConfig</div></td>
+    <td>表格的配置项，基本同 NewTable 的 配置在，除<code>url、path、pagePath、method、params</code>要配置在`component`（value的父级）项中</td>
+    <td><a href="/components/newtable#newtable-1">object</a></td>
+    <td>-</td>
+  </tr>
+</table>
+
+`value`中的`formConfig`:
+
+#### formConfig
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th><div style="white-space:nowrap;">默认值</div></th>
+  </tr>
+  <tr>
+    <td>schema</td>
+    <td>表格表单的顶部表单的描述表单的 schema</td>
+    <td><div style="white-space:nowrap;"><a href="https://github.com/alibaba/x-render/blob/e2feff8fdb3bef5537b92a2157dbbf40b9d4eb17/packages/form-render/src/type.ts#L32">SchemaBase</a></div></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>widgets</td>
+    <td>自定义组件，当内置组件无法满足时使用，详见<a href="https://xrender.fun/form-render/advanced-widget"> 自定义组件</a></td>
+    <td>Record&lt;string, ReactNode&gt;</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>addBtn</td>
+    <td>表格表单的顶部表单栏的<code>新增</code>按钮，没有该配置项则按钮不显示。已经存在表单的一个<code>查询</code>按钮，后续其他按钮依次排列</td>
+    <td><a href="#addbtnprops">object</a></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>exportBtn</td>
+    <td></td>
+    <td></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">importBtn</div></td>
+    <td>导入按钮，以给定的 url 为上传地址进行导入，成功后刷新页面；同时也支持以 text 配置文案，props 透传给 antd-button</td>
+    <td>{ url:string; text:ReactNode; props:object }</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">extraBtns</div></td>
+    <td>除新增、导出、导入按钮以外，可以添加其他自定义按钮。</br>
+    如果数组项值的类型是 string ，先会在 PageContainer 的 widgets 配置中寻找相关的映射组件然后进行渲染，会给组件的 props 注入 reset（重置表单刷新）和 update（当前筛选条件查询）两个方法然后渲染组件，找不到映射组件则会直接渲染字符串。</br>
+    如果数组项值的类型是 function ，会给组件函数（类）的 props 注入 reset（重置表单刷新）和 update（当前筛选条件查询）两个方法然后渲染组件。</br>
+    </td>
+    <td>Array&lt;ReactNode | string&gt;</td>
+    <td>-</td>
+  </tr>
+</table>
+
+`formConfig`中的`addBtn`:
+
+#### addBtn
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th>默认值</th>
+  </tr>
+  <tr>
+    <td>text</td>
+    <td>按钮文案</td>
+    <td>ReactNode</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>routerPath</td>
+    <td>跳转至新页面进行新增，有此项则<code>>url、method、schema、widgets</code>均失效</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>url</td>
+    <td>模态窗方式新增操作提交的接口地址</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>method</td>
+    <td>模态窗方式新增操作提交的请求方式</td>
+    <td>'put'|'post'</td>
+    <td>'post'</td>
+  </tr>
+  <tr>
+    <td>schema</td>
+    <td>模态窗方式新增操作描述表单的 schema</td>
+    <td><div style="white-space:nowrap;"><a href="https://github.com/alibaba/x-render/blob/e2feff8fdb3bef5537b92a2157dbbf40b9d4eb17/packages/form-render/src/type.ts#L32">SchemaBase</a></div></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>widgets</td>
+    <td>模态窗方式新增操作表单的自定义组件</td>
+    <td>Record&lt;string, ReactNode&gt;</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>props</td>
+    <td>新增按钮的其他props，透传给<code>antd-button</code></td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+</table>
+
 ## 单个表单卡片
 
 表单卡片`cardType` 为 `"detail"`
 
 ```jsx
-import { PageContainer } from "@iauto/components";
+import { PageContainer } from "@iauto/react-ui";
 const initData = {
   cards: {
     layout: {
@@ -131,8 +310,8 @@ const initData = {
           method: "put",
           field: "id",
           path: "data",
+          detailUrl: "/strategy-ms/v2/admin/strategy/{id}",
           value: {
-            detailUrl: "/strategy-ms/v2/admin/strategy/{id}",
             schema: {
               type: "object",
               properties: {
@@ -218,12 +397,116 @@ const initData = {
 export default () => <PageContainer data={initData} />;
 ```
 
+`cardType` 为 `"form-table"`，然后是`component`：
+
+### 表单卡片 API
+
+`cardType` 为 `"form"`，然后是`component`：
+
+#### component
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th>默认值</th>
+  </tr>
+  <tr>
+    <td>url</td>
+    <td>表单提交地址</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>method</td>
+    <td>表格数据请求方式</td>
+    <td><div style="white-space:nowrap;">'get' | 'post'</div></td>
+    <td>'get'</td>
+  </tr>
+  <tr>
+    <td>detailUrl</td>
+    <td>详情请求地址，用于初始化表单，多用于编辑页</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">detailMethod</div></td>
+    <td>详情数据请求方式</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>field</td>
+    <td>
+      如果 field 不存在则直接使用<code>detailUrl / url</code>进行<code>请求/提交</code>。</br>如果 field 存在且 <code>detailUrl / url</code> 中存在 {xxx} 字符串则 {xxx} 字符串会被替换为 params[feild] 值。</br>如果<code>detailUrl/url</code>中不存在 {xxx} 字符串且<code>请求/提交</code>类型(<code>method/detailMethod</code>)为 post 或 put 则 feild 与 params[feild] 值组成的键值对会被加入到 body 中然后进行<code>请求/提交</code>。</br></br>
+      注：params 指路由参数。xxx 指可以是任何字符串，例如一个 url 是 '/api/getData:{id}' 且 params[feild] 为 1，则最后实际请求的地址为 '/api/getData:10'
+    </td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>path</td>
+    <td>详情资源在接口出参中的路径</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+   <tr>
+    <td>value</td>
+    <td>表单的详细配置，详细见下文</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+</table>
+
+`component`中的`value`:
+
+#### value
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th><div style="white-space:nowrap;">默认值</div></th>
+  </tr>
+  <tr>
+    <td>schema</td>
+    <td>表单的描述表单的 schema</td>
+    <td><div style="white-space:nowrap;"><a href="https://github.com/alibaba/x-render/blob/e2feff8fdb3bef5537b92a2157dbbf40b9d4eb17/packages/form-render/src/type.ts#L32">SchemaBase</a></div></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>widgets</td>
+    <td>自定义组件，当内置组件无法满足时使用，详见<a href="https://xrender.fun/form-render/advanced-widget"> 自定义组件</a></td>
+    <td>Record&lt;string, ReactNode&gt;</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">disabled</div></td>
+    <td>表单是否不可编辑</td>
+    <td>boolean</td>
+    <td>false</td>
+  </tr>
+   <tr>
+    <td><div style="white-space:nowrap;">extraBtns</div></td>
+    <td>
+      在 Form 卡片中，表单底部默认存在<code>提交</code>(提交成功后路由后退)和<code>取消</code>两个按钮(路由后退)，通过 extraBtns 可以配置其他按钮。</br>
+      如果数组项值的类型是 string ，先会在 PageContainer 的 widgets 配置中寻找相关的映射组件然后进行渲染，会给组件的 props 注入 reset（重置表单刷新）和 update（当前筛选条件查询）两个方法然后渲染组件，找不到映射组件则会直接渲染字符串。</br>
+      如果数组项值的类型是 function ，会给组件函数（类）的 props 注入 reset（重置表单刷新）和 update（当前筛选条件查询）两个方法然后渲染组件。</br>
+    </td>
+    <td><a href="/components/newtable#newtable-1">object</a></td>
+    <td>-</td>
+  </tr>
+  
+</table>
+
 ## 单个多步骤表单卡片
 
 多步骤表单卡片`cardType` 为 `"form"`
 
 ```jsx
-import { PageContainer } from "@iauto/components";
+import { PageContainer } from "@iauto/react-ui";
 const initData = {
   cards: {
     layout: {
@@ -238,9 +521,9 @@ const initData = {
           method: "put",
           field: "id",
           path: "data",
+          detailUrl: "/strategy-ms/v2/admin/strategy/{id}",
           value: {
             widgets: { StrategyScopes: "strategyScopes" },
-            detailUrl: "/strategy-ms/v2/admin/strategy/{id}",
             schemas: [
               {
                 type: "object",
@@ -336,12 +619,115 @@ const initData = {
 export default () => <PageContainer data={initData} />;
 ```
 
+### 多步骤表单卡片 API
+
+`cardType` 为 `"steps-form"`，然后是`component`：
+
+#### component
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th><div style="white-space:nowrap;">默认值</div></th>
+  </tr>
+  <tr>
+    <td>url</td>
+    <td>表单提交地址</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>method</td>
+    <td>表格数据请求方式</td>
+    <td><div style="white-space:nowrap;">'get' | 'post'</div></td>
+    <td>'get'</td>
+  </tr>
+  <tr>
+    <td>detailUrl</td>
+    <td>详情请求地址，用于初始化表单，多用于编辑页</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">detailMethod</div></td>
+    <td>详情数据请求方式</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>field</td>
+    <td>
+      如果 field 不存在则直接使用<code>detailUrl / url</code>进行<code>请求/提交</code>。</br>如果 field 存在且 <code>detailUrl / url</code> 中存在 {xxx} 字符串则 {xxx} 字符串会被替换为 params[feild] 值。</br>如果<code>detailUrl/url</code>中不存在 {xxx} 字符串且<code>请求/提交</code>类型(<code>method/detailMethod</code>)为 post 或 put 则 feild 与 params[feild] 值组成的键值对会被加入到 body 中然后进行<code>请求/提交</code>。</br></br>
+      注：params 指路由参数。xxx 指可以是任何字符串，例如一个 url 是 '/api/getData:{id}' 且 params[feild] 为 1，则最后实际请求的地址为 '/api/getData:10'
+    </td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>path</td>
+    <td>详情资源在接口出参中的路径</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+   <tr>
+    <td>value</td>
+    <td>表单的详细配置，详细见下文</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+</table>
+
+`component`中的`value`:
+
+#### value
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th><div style="white-space:nowrap;">默认值</div></th>
+  </tr>
+  <tr>
+    <td>schemas</td>
+    <td>多步骤表单的描述表单的 多个schema</td>
+    <td><div style="white-space:nowrap;">Array&lt;SchemaBase&gt;，<a href="https://github.com/alibaba/x-render/blob/e2feff8fdb3bef5537b92a2157dbbf40b9d4eb17/packages/form-render/src/type.ts#L32">SchemaBase</a></div></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>widgets</td>
+    <td>自定义组件，当内置组件无法满足时使用，详见<a href="https://xrender.fun/form-render/advanced-widget"> 自定义组件</a></td>
+    <td>Record&lt;string, ReactNode&gt;</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">disabled</div></td>
+    <td>表单是否不可编辑</td>
+    <td>boolean</td>
+    <td>false</td>
+  </tr>
+   <tr>
+    <td><div style="white-space:nowrap;">extraBtns</div></td>
+    <td>
+      在多步骤表单卡片中，表单底部默认存在<code>提交</code>(提交成功后路由后退)、<code>取消</code>和<code>上一步</code>三个按钮(路由后退)，通过 extraBtns 可以配置其他按钮。</br>
+      如果数组项值的类型是 string ，先会在 PageContainer 的 widgets 配置中寻找相关的映射组件然后进行渲染，会给组件的 props 注入 reset（重置表单刷新）和 update（当前筛选条件查询）两个方法然后渲染组件，找不到映射组件则会直接渲染字符串。</br>
+      如果数组项值的类型是 function ，会给组件函数（类）的 props 注入 reset（重置表单刷新）和 update（当前筛选条件查询）两个方法然后渲染组件。</br>
+    </td>
+    <td><a href="/components/newtable#newtable-1">object</a></td>
+    <td>-</td>
+  </tr>
+  
+</table>
+
 ## 单个详情卡片
 
 详情卡片`cardType` 为 `"form"`
 
 ```jsx
-import { PageContainer } from "@iauto/components";
+import { PageContainer } from "@iauto/react-ui";
+import _ from "lodash";
 const initData = {
   cards: {
     layout: {
@@ -354,25 +740,64 @@ const initData = {
         component: {
           url:
             "https://randomuser.me/api?pagination[total]=200&results=10&pageSize=8&pageNumber=1",
-          path: "info",
+          path: "results[0]",
           field: "",
           value: {
-            init(formData) {},
-            tableConfig: {},
+            init(formData) {
+              _.set(
+                formData,
+                "name",
+                `${_.get(formData, "name.first")}·${_.get(
+                  formData,
+                  "name.last"
+                )}`
+              );
+              _.set(formData, "logins", [_.get(formData, "login")]);
+            },
+            tableConfig: {
+              logins: {
+                columns: [
+                  {
+                    title: "用户名",
+                    dataIndex: "username",
+                  },
+                  {
+                    title: "平台",
+                    dataIndex: "salt",
+                  },
+                  {
+                    title: "密码",
+                    dataIndex: "password",
+                  },
+                ],
+              },
+            },
             dataSource: {},
             names: {
-              page: "页面信息",
-              results: "结果信息",
-              seed: "来源",
-              version: "版本",
+              name: "姓名",
+              cell: "座机",
+              phone: "手机",
+              email: "邮箱",
+              gender: "性别",
+              nat: "民族",
+              location: "地址",
+              logins: "登录历史",
             },
             enums: {
-              // status: StatusEnum,
-              // triggerType: triggerTypeEnum,
-              // uploadType: uploadTypeEnum,
-              // type: storageTypeEnum,
+              gender: {
+                male: "男",
+                female: "女",
+              },
             },
-            objectConfig: {},
+            objectConfig: {
+              location: {
+                names: {
+                  country: "国家",
+                  city: "城市",
+                  postcode: "邮编",
+                },
+              },
+            },
           },
         },
       },
@@ -382,12 +807,103 @@ const initData = {
 export default () => <PageContainer data={initData} />;
 ```
 
+### 详情卡片 API
+
+`cardType` 为 `"detail"`，然后是`component`：
+
+#### component
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th>默认值</th>
+  </tr>
+  <tr>
+    <td>url</td>
+    <td>详情资源接口地址</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>path</td>
+    <td>详情资源在接口出参中的路径</td>
+   <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>method</td>
+    <td>请求方式</td>
+    <td>'get'|'post'</td>
+    <td>'get'</td>
+  </tr>
+  <tr>
+    <td>field</td>
+    <td>
+      如果 field 不存在则直接使用<code>url</code>进行<code>请求</code>。</br>如果 field 存在且 <code>url</code> 中存在 {xxx} 字符串则 {xxx} 字符串会被替换为 params[feild] 值。</br>如果<code>url</code>中不存在 {xxx} 字符串且<code>请求</code>类型(<code>method</code>)为 post 则 feild 与 params[feild] 值组成的键值对会被加入到 body 中然后进行<code>请求</code>。</br></br>
+      注：params 指路由参数。xxx 指可以是任何字符串，例如一个 url 是 '/api/getData:{id}' 且 params[feild] 为 1，则最后实际请求的地址为 '/api/getData:10'
+    </td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">params</div></td>
+    <td>额外配置参数，会加到请求参数中</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>value</td>
+    <td>详情卡片的详细配置，详细见下文</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+</table>
+
+`component`中的`value`:
+
+#### value
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th><div style="white-space:nowrap;">默认值</div></th>
+  </tr>
+  <tr>
+    <td>names</td>
+    <td>详情条目名称与出参字段的映射关系</td>
+    <td>Record&lt;string, string&gt;</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>enums</td>
+    <td>某些字段的出参值无法满足要求需要映射时，使用 enums 提供相应的映射关系</td>
+    <td>Record&lt;string, Record&lt;string, string&gt;&gt;</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">tableConfig</div></td>
+    <td>某些字段的出参值需要以表格形式展示，需要在 tableConfig 提供该字段的 columns，如果需要配置子表格则还需要提供 childTable， childTable 需要提供 field 指定 tableConfig-columns中哪个字段需要以子表格形式展示并提供它的 columns 。</td>
+    <td>Record&lt;string, { columns: object[], childTable?: { field: string, columns：object[]} }&gt;</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">objectConfig</div></td>
+    <td>某些字段的出参值是一个对象类型，需要以对象展开的形式展示该字段值</td>
+    <td><div style="white-space:nowrap;">Record&lt;string, { names: Record&lt;string, string&gt; }&gt;</div></td>
+    <td>-</td>
+  </tr>
+</table>
+
 ## 单个 Tabs 卡片
 
 Tabs 卡片`cardType` 为 `"tabs"`
 
 ```jsx
-import { PageContainer } from "@iauto/components";
+import { PageContainer } from "@iauto/react-ui";
 const initData = {
   cards: {
     layout: {
@@ -403,9 +919,8 @@ const initData = {
               cardType: "form-table",
               title: "form-table-card",
               component: {
-                url:
-                  "https://randomuser.me/api?pagination[total]=200&results=10",
-                path: "results",
+                url: "/api/vehicle-model-ms/v1/model",
+                path: "data",
                 pagePath: "pageable",
                 value: {
                   dataSource: [],
@@ -463,23 +978,17 @@ const initData = {
                     },
                     columns: [
                       {
-                        title: "Name",
-                        dataIndex: "name",
-                        render(text) {
-                          return text?.first;
-                        },
+                        title: "车型名",
+                        dataIndex: "brandName",
                       },
                       {
-                        title: "Gender",
-                        dataIndex: "gender",
-                        enums: {
-                          male: "男性",
-                          female: "女性",
-                        },
+                        title: "车型 CODE",
+                        dataIndex: "code",
                       },
                       {
-                        title: "Email",
-                        dataIndex: "email",
+                        title: "更新时间",
+                        dataIndex: "updateTime",
+                        format: "YYYY-MM-DD HH:mm:ss",
                       },
                     ],
                   },
@@ -523,12 +1032,21 @@ const initData = {
 export default () => <PageContainer data={initData} />;
 ```
 
+### Tabs 卡片 API
+
+`cardType` 为 `"tabs"`，`Tabs`卡片的 `component`只有一个`value`属性。
+
+#### value
+
+`类型`：`Array<{cardType: string, component: object}>`
+多个卡片的配置数据组成一个`Tabs`卡片。
+
 ## 多图表卡片
 
 图表卡片 `cardType` 为 `"form"`
 
 ```jsx
-import { PageContainer } from "@iauto/components";
+import { PageContainer } from "@iauto/react-ui";
 const initData = {
   cards: {
     layout: {
@@ -747,3 +1265,85 @@ const initData = {
 };
 export default () => <PageContainer data={initData} />;
 ```
+
+### 图表卡片 API
+
+`cardType` 为 `"chart"`，然后是`component`：
+
+#### component
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th>默认值</th>
+  </tr>
+  <tr>
+    <td>url</td>
+    <td>图表资源接口地址</td>
+    <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>path</td>
+    <td>图表资源在接口出参中的路径</td>
+   <td>string</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>method</td>
+    <td>请求方式</td>
+    <td>'get'|'post'</td>
+    <td>'get'</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">params</div></td>
+    <td>额外配置参数，会加到请求参数中</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>value</td>
+    <td>详情卡片的详细配置，详细见下文</td>
+    <td>object</td>
+    <td>-</td>
+  </tr>
+</table>
+
+`component`中的`value`:
+
+#### value
+
+<table>
+  <tr>
+    <th>参数</th>
+    <th>说明</th>
+    <th>类型</th>
+    <th><div style="white-space:nowrap;">默认值</div></th>
+  </tr>
+  <tr>
+    <td>option</td>
+    <td>Echarts配置项，会被<code>getOption</code>的返回值覆盖</td>
+    <td><a href="https://echarts.apache.org/zh/option.html#title">EchartsOptions</a></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>formConfig</td>
+    <td>图表的筛选栏表单配置项，schema为表单描述、widgets为自定义组件、style控制筛选栏样式</td>
+    <td>Record&lt;string, { schema: object, widgets?: Record&lt;string, ReactNode&gt;,style?:CSSProperties }&gt;</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>getOption</td>
+    <td>请求远程资源后生成 <a href="https://echarts.apache.org/zh/option.html#title">EchartsOptions</a>，会覆盖 option</td>
+    <td>(data)=> <a href="https://echarts.apache.org/zh/option.html#title">EchartsOptions</a></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><div style="white-space:nowrap;">multipleConfig</div></td>
+    <td>以 Tabs 展示多个图表</td>
+    <td>Array&lt;option?: <a href="https://echarts.apache.org/zh/option.html#title">EchartsOptions</a>, getOption: (data)=> <a href="https://echarts.apache.org/zh/option.html#title">EchartsOptions</a>, url?: string, path?: string, method?: string,params?: object,formConfig?: Record&lt;string, { schema: object, widgets?: Record&lt;string, ReactNode&gt;,style?:CSSProperties }&gt;&gt;</td>
+    <td>-</td>
+  </tr>
+</table>

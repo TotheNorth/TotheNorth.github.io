@@ -32,5 +32,5 @@ Chart 组件底层依赖于 [echarts-for-react](https://github.com/hustcc/echart
 
 ## 注意
 
-这里仅列举几个几个比较重要且有代表性的底层依赖，具体依赖列表见`package.json`文件。另外，组件库通过`dependencies`的方式对相关的包进行依赖，因此在可兼容的情况下，相关的包会安装到宿主项目的依赖中，因此开发者可以直接在宿主项目中使用`@iauto/components`的底层依赖包。
+这里仅列举几个几个比较重要且有代表性的底层依赖，具体依赖列表见`package.json`文件。另外，组件库通过`dependencies`的方式对相关的包进行依赖，因此在可兼容的情况下，相关的包会安装到宿主项目的依赖中，因此开发者可以直接在宿主项目中使用`@iauto/react-ui`的底层依赖包。
 关于各类`dependencies`的介绍，见：[「完全理解」各种 dependencies](https://zhuanlan.zhihu.com/p/390218026)。

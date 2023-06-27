@@ -2,14 +2,18 @@
 toc: content
 ---
 
-## ModalWithForm
+# ModalWithForm
+
+## 基本使用
 
 因`弹窗形式表单`常见于项目中，所以将`NewForm`与`antd-Modal`两个组件组合为`ModalWithForm`，表单数据见控制台。
 
 ```jsx
-import { ModalWithForm } from "@iauto/components";
+import { ModalWithForm } from "@iauto/react-ui";
 import { useRef, useState } from "react";
 import { Button } from "antd";
+import _ from "lodash";
+console.log(_.split("a-b-c", "-"), _.split(undefined, "-"), _.split(1, "-"));
 const schema = {
   type: "object",
   properties: {
@@ -23,6 +27,25 @@ const schema = {
       type: "string",
       enum: ["a", "b", "c"],
       enumNames: ["早", "中", "晚"],
+    },
+    select2: {
+      title: "单选2",
+      type: "string",
+      enum: ["a", "b", "c"],
+      enumNames: ["早", "中", "晚"],
+    },
+    code: {
+      title: "公式",
+      widget: "CodeEditor",
+    },
+    code1: {
+      title: "公式2",
+      widget: "CodeEditor",
+    },
+    file: {
+      title: "文件上传",
+      type: "number",
+      widget: "CustomUpload",
     },
   },
   displayType: "row",
@@ -64,8 +87,6 @@ export default () => {
 ## API
 
 ### ModalWithForm
-
-`TableWithForm`的配置参数基本是`NewTable`的所有参数（原`operate`改为`tableOperate`）加上`NewForm`的`schema`与`widgets`，因此此类参数不再具体展开说明，这里着重介绍`TableWithForm`的一些特有配置参数。
 
 <table>
   <tr>

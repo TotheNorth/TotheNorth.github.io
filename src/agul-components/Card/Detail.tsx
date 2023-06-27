@@ -34,8 +34,9 @@ const DetailCard: React.FC<{
       <Detail
         url={data?.component?.url}
         path={data?.component?.path}
-        dataSource={data?.component?.value?.dataSource}
         field={data?.component?.field}
+        method={data?.component?.method}
+        params={data?.component?.params}
         names={data?.component?.value?.names}
         enums={data?.component?.value?.enums}
         tableConfig={data?.component?.value?.tableConfig}

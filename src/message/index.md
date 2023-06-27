@@ -4,17 +4,21 @@ toc: content
 
 # Message
 
-## 基本用法
+## 基本使用
 
 ```jsx
-import { Message } from "@iauto/components";
+import { Message } from "@iauto/react-ui";
 import { Button } from "antd";
 
 export default () => (
   <div>
     <Button
       onClick={() => {
-        Message.success({ title: "主标题", subTitle: "副标题" });
+        Message.success({
+          title: "主标题",
+          subTitle:
+            "副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题副标题",
+        });
       }}
     >
       click me show success message
@@ -23,7 +27,11 @@ export default () => (
     <br />
     <Button
       onClick={() => {
-        Message.error({ title: "主标题", subTitle: "副标题" });
+        Message.error({
+          title:
+            "主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题主标题",
+          subTitle: "副标题",
+        });
       }}
     >
       click me show error message
@@ -45,12 +53,12 @@ export default () => (
   <tr>
     <td><div style="white-space:nowrap;">success</div></td>
     <td>成功提示</td>
-    <td><a href="#msgprops">MsgProps</a></td>
+    <td>MsgProps</td>
   </tr>
   <tr>
     <td>error</td>
     <td>错误提示</td>
-    <td><a href="#msgprops">MsgProps</a></td>
+    <td>MsgProps</td>
   </tr>
 </table>
 

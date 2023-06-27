@@ -3,12 +3,10 @@ import _ from "lodash";
 import { useNavigate } from "react-router-dom";
 import { Button } from "antd";
 import Message from "@/agul-methods/Message";
-import { v4 as uuid } from "uuid";
 import NewForm from "@/agul-components/NewForm";
 import NewTable from "@/agul-components/NewTable";
 import ModalWithForm from "@/agul-components/ModalWithForm";
-import request from "@/agul-utils/request";
-import { AgulWrapperConfigContext } from "@/agul-utils/context";
+import useNewRequest from "@/agul-hooks/useNewRequest";
 import "./styles.less";
 
 const DefaultModalConfig = {
@@ -67,25 +65,19 @@ const TableWithForm: React.FC<{
   const modalFormRef = useRef<any>(null);
   const [modalConfig, setModalConfig] = useState<any>(DefaultModalConfig);
   const [extraParams, setExtraParams] = useState<any>({});
-  const [showTable, setShowTable] = useState<boolean>(false);
+  const showTableRef = useRef<boolean>(false);
   const onMount = () => {
-    const init = _.get(schema, "action.init", () => {});
-    const data = formRef?.current?.getValues();
-    init(data);
-    setExtraParams({
-      ...data,
-    });
-    setShowTable(true);
+    toSubmit();
+    showTableRef.current = true;
   };
   const navigate = useNavigate();
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
+  const request = useNewRequest();
   const toSubmit = () => {
     formRef?.current
       ?.validate()
       .then((res: any) => {
         if (!res?.errors || !res?.errors?.length) {
-          _.set(res, "___agul_ui_time____", new Date().getTime());
+          // _.set(res, "___agul_ui_time____", new Date().getTime());
           setExtraParams(_.pickBy(res, (item) => !_.isNil(item)));
         }
       })
@@ -95,7 +87,8 @@ const TableWithForm: React.FC<{
   };
   const reset = () => {
     formRef?.current?.resetFields();
-    setExtraParams({ ___agul_ui_time____: new Date().getTime() });
+    // setExtraParams({ ___agul_ui_time____: new Date().getTime() });
+    setExtraParams({});
   };
   const toAdd = () => {
     if (addBtn?.routerPath) {
@@ -110,7 +103,6 @@ const TableWithForm: React.FC<{
             request(addBtn?.url, {
               method: addBtn?.method ? addBtn?.method : "post",
               data: res,
-              headers: { ...requestHeaders },
             })
               .then(() => {
                 Message.success({
@@ -138,7 +130,7 @@ const TableWithForm: React.FC<{
       readonly: false,
     });
   };
-  const tableOperateBoxId = uuid();
+  const configBox = useRef(null);
   const currentParams = useMemo(() => {
     return params ? { ...params, ...extraParams } : extraParams;
   }, [extraParams]);
@@ -154,7 +146,7 @@ const TableWithForm: React.FC<{
               onMount={onMount}
             />
           </div>
-          <div className="agul-table-with-operate-box" id={tableOperateBoxId}>
+          <div className="agul-table-with-operate-box" ref={configBox}>
             <Button onClick={() => toSubmit()}>查询</Button>
             {addBtn ? (
               <Button type="primary" onClick={toAdd} {...addBtn?.props}>
@@ -165,7 +157,7 @@ const TableWithForm: React.FC<{
           </div>
         </div>
       ) : null}
-      {showTable ? (
+      {showTableRef?.current ? (
         <NewTable
           rowKey="id"
           url={url}
@@ -180,8 +172,8 @@ const TableWithForm: React.FC<{
           childTable={childTable}
           needOrder={needOrder}
           method={method}
-          tableOperateBoxId={tableOperateBoxId}
-          tableExportBoxId={tableOperateBoxId}
+          rowConfigBox={configBox.current}
+          exportBox={configBox.current}
           height={tableHeight}
           ref={tableRef}
         />

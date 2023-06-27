@@ -9,7 +9,7 @@ toc: content
 通过`schema`来描述表单的基本信息、结构和校验， `NewForm`底层基于`XRender`的`FormRender`，具体`schema`的配置见[schema 规范](https://x-render.oschina.io/form-render/schema/schema/)。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 
 const schema = {
   type: "object",
@@ -40,14 +40,14 @@ export default () => {
 
 ## XRender-FormRender 基础上新增功能
 
-基于`XRender-FormRender`的[自定义组件](https://x-render.oschina.io/form-render/advanced/widget)和[覆盖默认组件](https://x-render.oschina.io/form-render/advanced/mapping)功能，`NewForm`在`XRender-FormRender`已有功能基础上进行了拓展，以便更简易对更多常用表单控件进行配置。
+基于`XRender-FormRender`的[自定义组件](https://x-render.oschina.io/form-render/advanced/widget)功能，`NewForm`在`XRender-FormRender`已有功能基础上进行了拓展，以便更简易对更多常用表单控件进行配置。
 
 ## 文件上传
 
 配置`schema`的字段`widget`为`CustomUpload`，可以实现对`文件上传`控件的配置。注意，`form-render`存在自带的`upload`内置控件，但是只支持自动上传，这里新增的`CustomUpload`可以把`file`文件对象注入到`formData`中，实现手动上传。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 // https://xrender.fun/form-render/advanced-validate#%E4%B8%80%E5%86%85%E7%BD%AE%E6%A0%A1%E9%AA%8C
 // 已有widget则type不需要，format是对type的转化处理方式
 const schema = {
@@ -74,7 +74,7 @@ export default () => {
 配置`schema`的字段`widget`为`CodeEditor`，可以实现对`代码编辑器`控件的配置。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 
 const schema = {
   type: "object",
@@ -101,7 +101,7 @@ export default () => {
 配置`schema`的字段`widget`为`JsonEditor`，可以实现对`JSON编辑器`控件的配置并对输入的数据进行`JSON`格式的校验。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 
 const schema = {
   type: "object",
@@ -109,6 +109,7 @@ const schema = {
     input: {
       title: "json",
       widget: "JsonEditor",
+      required: true,
     },
   },
   displayType: "row",
@@ -123,18 +124,18 @@ export default () => {
 };
 ```
 
-## 穿梭框
+## 级联选择框
 
-配置`schema`的字段`widget`为`CustomCascader`，然后对`treeData`进行远程数据源的配置就可以实现对`穿梭框`控件的配置。
+配置`schema`的字段`widget`为`CustomCascader`，然后对`treeData`进行远程数据源的配置就可以实现对`级联选择框`控件的配置。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 
 const schema = {
   type: "object",
   properties: {
     input: {
-      title: "简单穿梭框",
+      title: "简单级联选择框",
       type: "array",
       widget: "CustomCascader",
       treeData: {
@@ -163,7 +164,7 @@ export default () => {
 配置`schema`的字段`widget`为`CustomNumberSelect`或`CustomStringSelect`，然后对`treeData`进行远程数据源的配置就可以实现对`下拉框`控件的配置。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 
 const schema = {
   type: "object",
@@ -199,7 +200,7 @@ export default () => {
 配置`schema`的字段`widget`为`CustomTreeSelect`，然后对`treeData`进行远程数据源的配置就可以实现对`树状选择`控件的配置，注意该控件只会存储数据源最子一级的数据的`valueFeild`字段的取值，具体查看控制台。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 
 const schema = {
   type: "object",
@@ -234,7 +235,7 @@ export default () => {
 配置`schema`的字段`widget`为`AsyncSelect`，然后对`treeData`进行远程数据源的配置就可以实现对`模糊搜索`控件的配置，具体传参查看控制台。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 
 const schema = {
   type: "object",
@@ -271,7 +272,7 @@ export default () => {
 以上例子都是通过非受控组件的形式展示的，开发者只配置`schema`对表单项进行描述。然后通过`onSubmit`或者其他方式拿到最后的产出的`formData`，整个状态由`NewForm`自身进行管理。除此之外，`NewForm`支持通过`formData`和`onChange`这两个`props`配合实现一个[受控的 react 表单组件](https://segmentfault.com/a/1190000040308582)。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 import { useState } from "react";
 import { Input } from "antd";
 import _ from "lodash";
@@ -329,7 +330,7 @@ export default () => {
 注意：函数不需要`return`，仅改变入参的值即可。
 
 ```jsx
-import { NewForm } from "@iauto/components";
+import { NewForm } from "@iauto/react-ui";
 import { useState } from "react";
 import _ from "lodash";
 
@@ -382,7 +383,7 @@ export default () => {
 
 ### NewForm
 
-<b>这里介绍常用的 props。同时也支持 <a href="https://xrender.fun/form-render/api-props"  target="_blank">form-render</a> 的其他大部分 props ，除 watch 不再支持 "#" 配置， onFinish 不支持。</b>
+<b>这里介绍常用的 props。同时也支持 <a href="https://xrender.fun/form-render/api-props" >form-render</a> 的其他大部分 props ，除 watch 不再支持 "#" 配置， onFinish 不支持。</b>
 
 <table>
   <tr>
@@ -394,7 +395,7 @@ export default () => {
   <tr>
     <td>schema</td>
     <td>必填，描述表单的 schema</td>
-    <td><a href="https://github.com/alibaba/x-render/blob/e2feff8fdb3bef5537b92a2157dbbf40b9d4eb17/packages/form-render/src/type.ts#L32" target="_blank">SchemaBase</a></td>
+    <td><a href="https://github.com/alibaba/x-render/blob/e2feff8fdb3bef5537b92a2157dbbf40b9d4eb17/packages/form-render/src/type.ts#L32">SchemaBase</a></td>
     <td>-</td>
   </tr>
   <tr>
@@ -405,7 +406,7 @@ export default () => {
   </tr>
   <tr>
     <td>ref</td>
-    <td>组件引用，可以调用 validate（返回一个promise）方法拿到通过校验的数据，也可以调用其他的 <a href="https://xrender.fun/form-render/api-props#forminstance" target="_blank">form-render的组件方法</a></td>
+    <td>组件引用，可以调用 validate（返回一个promise）方法拿到通过校验的数据，也可以调用其他的 <a href="https://xrender.fun/form-render/api-props#forminstance">form-render的组件方法</a></td>
     <td>useRef</td>
     <td>-</td>
   </tr>
@@ -430,7 +431,7 @@ export default () => {
    <tr>
     <td>submitText</td>
     <td>提交按钮文案</td>
-    <td>string</td>
+    <td>ReactNode</td>
     <td><div style="white-space:nowrap;">"提交"</div></td>
   </tr>
    <tr>
@@ -442,12 +443,12 @@ export default () => {
    <tr>
     <td>cancelText</td>
     <td>取消按钮文案</td>
-    <td>string</td>
+    <td>ReactNode</td>
     <td>"取消"</td>
   </tr>
   <tr>
     <td><div id="widgets">widgets</div></td>
-    <td>自定义组件，当内置组件无法满足时使用，详见<a href="https://xrender.fun/form-render/advanced-widget" target="_blank"> 自定义组件</a>。<br/>注意，在NewForm中内置了 CustomUpload、CustomStringSelect、
+    <td>自定义组件，当内置组件无法满足时使用，详见<a href="https://xrender.fun/form-render/advanced-widget"> 自定义组件</a>。<br/>注意，在NewForm中内置了 CustomUpload、CustomStringSelect、
 CustomNumberSelect、CustomTreeSelect、CustomCascader、JsonEditor、CodeEditor、AsyncSelect几种自定义组件，新增组件名称冲突则会覆盖已有组件</td>
     <td>Record&lt;string, ReactNode&gt;</td>
     <td>-</td>

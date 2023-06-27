@@ -4,10 +4,10 @@ toc: content
 
 # Loading
 
-## 基本用法
+## 基本使用
 
 ```jsx
-import { Loading } from "@iauto/components";
+import { Loading } from "@iauto/react-ui";
 import { Button } from "antd";
 
 export default () => {
@@ -47,7 +47,7 @@ export default () => {
   <tr>
     <td><div style="white-space:nowrap;">show</div></td>
     <td>显示loading</td>
-    <td><a href="#loadingparameter">LoadingParameter</a></td>
+    <td>LoadingParameter</td>
   </tr>
   <tr>
     <td>hide</td>
@@ -60,6 +60,6 @@ export default () => {
 
 `show`方法的`入参类型`有三种情况：
 
-- `string` ：参数为则会以这个参数为 `id 选择器`的参数去匹配元素作为`loading`的父容器。
-- `HTMLElement`:参数是一个`dom`元素则会以这个`dom`作为`loading`的父容器。
-- `undefined`:无参数则会以`document.body`作为`loading`的父元素。
+- `string`：参数为则会以这个参数为 `id 选择器`的参数去匹配元素作为`loading`的父容器。
+- `HTMLElement`： 参数是一个`dom`元素则会以这个`dom`作为`loading`的父容器。
+- `undefined`： 无参数则会以`document.body`作为`loading`的父元素。

@@ -5,7 +5,6 @@ import "./styles.less";
 
 const { TabPane } = Tabs;
 const Chart: React.FC<{
-  multiple?: boolean;
   multipleConfig?: Record<string, any>[];
   option?: any;
   getOption?: any;
@@ -15,8 +14,7 @@ const Chart: React.FC<{
   params?: any;
   formConfig?: any;
 }> = ({
-  multiple = false,
-  multipleConfig = [],
+  multipleConfig,
   option,
   getOption,
   url = "",
@@ -27,9 +25,9 @@ const Chart: React.FC<{
 }) => {
   return (
     <div className="agul-chart-container">
-      {multiple ? (
+      {multipleConfig ? (
         <Tabs defaultActiveKey="0">
-          {_.map(multipleConfig, (item) => (
+          {_.map(multipleConfig || [], (item) => (
             <TabPane tab={item?.title} key={`${item?.title}`}>
               <Content {...item} />
             </TabPane>

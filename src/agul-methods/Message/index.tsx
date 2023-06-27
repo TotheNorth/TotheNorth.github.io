@@ -18,6 +18,7 @@ const SubTitleStyle: CSSProperties = {
   width: "100%",
 };
 const TextEllipsisStyle: CSSProperties = {
+  width: 600,
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",

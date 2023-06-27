@@ -16,7 +16,7 @@ FormRender 仅支持通过 enum 和 enumNames 在 schema 中进行配置，动�
 
 ### treeData
 
-formRender 本身提供的下拉框、树形选择框或穿梭框在动态渲染 options 需要动态修改 schema，不太灵活。NewForm 支持通过 treeData 为以上几种表单属性配置动态数据源，treeData 属性：
+formRender 本身提供的下拉框、树形选择框或级联选择框在动态渲染 options 需要动态修改 schema，不太灵活。NewForm 支持通过 treeData 为以上几种表单属性配置动态数据源，treeData 属性：
 
 ##### format:cascader：
 
@@ -24,8 +24,8 @@ formRender 本身提供的下拉框、树形选择框或穿梭框在动态渲染
 | ----------- | --------------------------------------------------------- |
 | url(string)         | 数据源（这里数据源必须是 基于 children 的子父级数据结构） |
 | path(string)        | 资源路径                                                  |
-| labelFeilds(string[]) | 每级穿梭框的 label，数组长度对应着几级穿梭框              |
-| valueFeilds(string[]) | 每级穿梭框的 value，数组长度对应着几级穿梭框              |
+| labelFeilds(string[]) | 每级级联选择框的 label，数组长度对应着几级级联选择框              |
+| valueFeilds(string[]) | 每级级联选择框的 value，数组长度对应着几级级联选择框              |
 
 ##### format:select & format:treeSelect：
 

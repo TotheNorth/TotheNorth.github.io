@@ -41,17 +41,15 @@ import {
   PlayCircleOutlined,
 } from "@ant-design/icons";
 import type { PaginationProps } from "antd";
-import { useDeepCompareEffect, useUpdateEffect } from "ahooks";
+import { useUpdateEffect } from "ahooks";
 import ModalWithForm from "@/agul-components/ModalWithForm";
 import ModalDetail from "@/agul-components/ModalDetail";
-import ModalVideo from "@/agul-components/ModalVideo";
-import ModalFileParse from "@/agul-components/ModalFileParse";
-import { timeUtcOffect } from "@/agul-utils/utils";
-import request from "@/agul-utils/request";
-import { WidgetsContext, AgulWrapperConfigContext } from "@/agul-utils/context";
+import { timeUtcOffect, filterFormData, isObject } from "@/agul-utils/utils";
+import useNewRequest from "@/agul-hooks/useNewRequest";
+import { WidgetsContext } from "@/agul-utils/context";
 import moment from "moment";
 import EmptyImg from "../../agul-assets/imgs/empty.png";
-import { filterFormData, isObject } from "@/agul-utils/utils";
+import { isDOM } from "@/agul-utils/utils";
 const ButtonStyle: CSSProperties = {
   display: "inline-block",
   textAlign: "center",
@@ -145,7 +143,6 @@ const getTag = (val: any, enums: any, tagType: any): any => {
     return _.isNil(val) ? "-" : val;
   }
 };
-const BoxId = "agul_new_table_operate_and_export_btn_box";
 const BoxStyle: CSSProperties = {
   position: "absolute",
   margin: 0,
@@ -241,9 +238,9 @@ const NewTable: FC<{
   height?: number;
   rowKey?: string;
   rowConfig?: any;
-  tableOperateBoxId?: string;
+  rowConfigBox?: string | HTMLElement;
   exportBtn?: any;
-  tableExportBoxId?: string;
+  exportBox?: string;
   extraPagination?: PaginationProps;
 }> = (props) => {
   const {
@@ -261,14 +258,13 @@ const NewTable: FC<{
     height,
     rowKey = "id",
     exportBtn,
-    tableExportBoxId,
+    exportBox,
     rowConfig,
-    tableOperateBoxId,
+    rowConfigBox,
     extraPagination,
     ...otherProps
   } = props;
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
+  const request = useNewRequest();
   const getCurrentIcon = (item: any, callback: any) => {
     const commonProps = {
       style: CommonColorStyle,
@@ -351,7 +347,6 @@ const NewTable: FC<{
     request(url, {
       method,
       ...params,
-      headers: { ...requestHeaders },
     })
       .then((res: any) => {
         if (needOrder) {
@@ -457,7 +452,6 @@ const NewTable: FC<{
               _.get(row, operate?.field)
             );
             const reqData = {
-              headers: { ...requestHeaders },
               method: operate?.method || "post",
             };
             if (["put", "post"].includes(operate?.method) || !operate?.method) {
@@ -519,7 +513,6 @@ const NewTable: FC<{
               _.get(row, operate?.field)
             );
             const reqData = {
-              headers: { ...requestHeaders },
               method: operate?.method || "put",
             };
             if (["put", "post"].includes(operate?.method) || !operate?.method) {
@@ -553,7 +546,6 @@ const NewTable: FC<{
         _.get(row, operate?.field)
       );
       const reqData = {
-        headers: { ...requestHeaders },
         method: operate?.detailMethod || "get",
       };
       if (
@@ -617,7 +609,6 @@ const NewTable: FC<{
         ? operate?.url!.replaceAll(RegOfUrl, _.get(row, operate?.field))
         : operate?.url;
       const reqData = {
-        headers: { ...requestHeaders },
         method: operate?.method || "get",
       };
       if (
@@ -671,7 +662,6 @@ const NewTable: FC<{
           _.get(row, operate?.field)
         );
         const reqData = {
-          headers: { ...requestHeaders },
           method: operate?.method ? operate?.method : "delete",
         };
         if (
@@ -704,38 +694,36 @@ const NewTable: FC<{
     }
     let downloadUrl;
     const options: any = {
+      getResponse: true,
+      responseType: "blob",
+      prefix: "",
       headers: {
         ...operate?.headers,
       },
     };
-    if (operate?.field) {
-      if (operate?.url) {
-        downloadUrl = operate?.url.replaceAll(
-          RegOfUrl,
-          _.get(row, operate?.field)
-        );
-      } else {
-        downloadUrl = _.get(row, operate?.field);
-      }
+    if (operate?.url) {
+      downloadUrl = operate?.url.replaceAll(
+        RegOfUrl,
+        _.get(row, operate?.field)
+      );
+    } else if (operate?.field) {
+      downloadUrl = _.get(row, operate?.field);
     }
     if (!downloadUrl) {
       message.warn("该资源地址无效!");
       return;
     }
-    if (
-      operate?.url &&
-      !RegOfUrl.test(operate?.url) &&
-      ["put", "post"].includes(operate?.method)
-    ) {
+    if (!RegOfUrl.test(operate?.url) && operate?.method === "post") {
       options.method = "post";
-      options.body = JSON.stringify({
+      options.data = {
         [operate?.field]: _.get(row, operate?.field),
-      });
+      };
     }
     let download: string;
-    fetch(downloadUrl, options)
+    request(downloadUrl as string, options)
       .then((res) => {
-        const disposition = res.headers.get("Content-Disposition");
+        const { data, response } = res;
+        const disposition = response.headers.get("Content-Disposition");
         let str =
           typeof disposition === "string"
             ? disposition.split(";")[1]
@@ -746,11 +734,13 @@ const NewTable: FC<{
             ? str.split("filename=")[1]
             : str.split("fileName=")[1];
         }
-        filename = filename ? filename : row?.filename || row?.fileName;
+        filename =
+          filename ||
+          row?.filename ||
+          row?.fileName ||
+          operate?.filename ||
+          operate?.fileName;
         download = decodeURIComponent(filename);
-        return res.blob();
-      })
-      .then((blob) => {
         if (!download) {
           Message.error({
             title: "下载错误，请联系开发人员！",
@@ -758,7 +748,7 @@ const NewTable: FC<{
           return;
         }
         const a = document.createElement("a");
-        const url = window.URL.createObjectURL(blob);
+        const url = window.URL.createObjectURL(data);
         a.href = url;
         a.download = download;
         a.target = "_blank";
@@ -1113,7 +1103,12 @@ const NewTable: FC<{
               return (
                 <>
                   {item?.condition && !evil(row, item.condition) ? (
-                    <a style={NoneButtonStyle}>-</a>
+                    <a
+                      style={NoneButtonStyle}
+                      className="agul-ui-newtable-operate-disabled-btn"
+                    >
+                      -
+                    </a>
                   ) : item?.type === "custom" ? (
                     typeof item?.widget === "string" ? (
                       Widgets && Widgets[item?.widget] ? (
@@ -1192,46 +1187,46 @@ const NewTable: FC<{
   });
   const toExport = () => {
     const options: any = {
+      getResponse: true,
+      responseType: "blob",
+      prefix: "",
       headers: {
         ...exportBtn?.headers,
       },
     };
-
-    let params = exportBtn?.params ? exportBtn?.params : {};
+    let params = isObject(exportBtn?.params) ? exportBtn?.params : {};
     params = { ...params, ...currentParams };
-    if (exportBtn?.method === "post") {
+    if (exportBtn?.method === "get" || !exportBtn?.method) {
+      options.params = params;
+    } else {
       options.method = "post";
-      options.body = JSON.stringify(params);
+      options.data = params;
     }
     let download: any;
-    fetch(exportBtn?.url, options)
+    request(exportBtn?.url, options)
       .then((res) => {
-        const disposition = res.headers.get("Content-Disposition");
+        const { data, response } = res;
+        const disposition = response.headers.get("Content-Disposition");
         let str =
           typeof disposition === "string"
             ? disposition.split(";")[1]
-            : exportBtn?.filname;
+            : exportBtn?.filename;
         let filename = "";
         if (str) {
           filename = !str.split("fileName=")[1]
             ? str.split("filename=")[1]
             : str.split("fileName=")[1];
         }
-        filename = filename
-          ? filename
-          : exportBtn?.filename || exportBtn?.fileName;
+        filename = filename || exportBtn?.filename || exportBtn?.fileName;
         download = decodeURIComponent(filename);
-        return res.blob();
-      })
-      .then((blob) => {
         if (!download) {
           Message.error({
-            title: "文件名缺失、下载错误，请联系开发人员！",
+            title: "下载错误，请联系开发人员！",
           });
           return;
         }
         const a = document.createElement("a");
-        const url = window.URL.createObjectURL(blob);
+        const url = window.URL.createObjectURL(data);
         a.href = url;
         a.download = download;
         a.target = "_blank";
@@ -1243,10 +1238,101 @@ const NewTable: FC<{
       });
   };
   const boxRef = useRef<any>();
-  const [showBtn, setShowBtn] = useState<boolean>(false);
-  useEffect(() => {
-    setShowBtn(true);
-  }, []);
+  const RenderRowConfig = () => {
+    if (!rowConfig) {
+      return null;
+    } else if (isDOM(rowConfigBox)) {
+      return createPortal(
+        <Button
+          type="primary"
+          onClick={() => {
+            setRowSelectShow(true);
+          }}
+          className="agul_new_table_row_config_btn"
+        >
+          配置列
+        </Button>,
+        rowConfigBox as any
+      );
+    } else if (
+      _.isString(rowConfigBox) &&
+      !!document.getElementById(rowConfigBox)
+    ) {
+      return createPortal(
+        <Button
+          type="primary"
+          onClick={() => {
+            setRowSelectShow(true);
+          }}
+          className="agul_new_table_row_config_btn"
+        >
+          配置列
+        </Button>,
+        rowConfigBox as any
+      );
+    } else {
+      return boxRef.current
+        ? createPortal(
+            <Button
+              type="primary"
+              onClick={() => {
+                setRowSelectShow(true);
+              }}
+              className="agul_new_table_row_config_btn"
+              style={{
+                marginLeft:
+                  exportBtn && exportBox && !!document.getElementById(exportBox)
+                    ? 14
+                    : 0,
+              }}
+            >
+              配置列
+            </Button>,
+            boxRef.current
+          )
+        : null;
+    }
+  };
+  const RenderExportBox = () => {
+    if (!exportBtn) {
+      return null;
+    } else if (isDOM(exportBox)) {
+      return createPortal(
+        <Button
+          type="primary"
+          onClick={() => toExport()}
+          className="agul_new_table_export_btn"
+        >
+          {exportBtn?.text || "导出"}
+        </Button>,
+        exportBox as any
+      );
+    } else if (_.isString(exportBox) && !!document.getElementById(exportBox)) {
+      createPortal(
+        <Button
+          type="primary"
+          onClick={() => toExport()}
+          className="agul_new_table_export_btn"
+        >
+          {exportBtn?.text || "导出"}
+        </Button>,
+        document.getElementById(exportBox) as any
+      );
+    } else {
+      return boxRef.current
+        ? createPortal(
+            <Button
+              type="primary"
+              onClick={() => toExport()}
+              className="agul_new_table_export_btn"
+            >
+              {exportBtn?.text || "导出"}
+            </Button>,
+            boxRef.current
+          )
+        : null;
+    }
+  };
   return (
     <div style={{ position: "relative" }}>
       <Modal
@@ -1287,59 +1373,13 @@ const NewTable: FC<{
           </Row>
         </Checkbox.Group>
       </Modal>
-      <div id={BoxId} style={BoxStyle} ref={boxRef}></div>
-      {exportBtn
-        ? tableExportBoxId && !!document.getElementById(tableExportBoxId)
-          ? createPortal(
-              <Button type="primary" onClick={() => toExport()}>
-                {exportBtn?.text || "导出"}
-              </Button>,
-              document.getElementById(tableExportBoxId)!
-            )
-          : !!document.getElementById(BoxId)
-          ? createPortal(
-              <Button type="primary" onClick={() => toExport()}>
-                {exportBtn?.text || "导出"}
-              </Button>,
-              document.getElementById(BoxId)!
-            )
-          : null
-        : null}
-      {rowConfig && showBtn
-        ? tableOperateBoxId && !!document.getElementById(tableOperateBoxId)
-          ? createPortal(
-              <Button
-                type="primary"
-                onClick={() => {
-                  setRowSelectShow(true);
-                }}
-              >
-                配置列
-              </Button>,
-              document.getElementById(tableOperateBoxId)!
-            )
-          : !!document.getElementById(BoxId)
-          ? createPortal(
-              <Button
-                type="primary"
-                onClick={() => {
-                  setRowSelectShow(true);
-                }}
-                style={{
-                  marginLeft:
-                    exportBtn &&
-                    tableExportBoxId &&
-                    !!document.getElementById(tableExportBoxId)
-                      ? 14
-                      : 0,
-                }}
-              >
-                配置列
-              </Button>,
-              boxRef.current
-            )
-          : null
-        : null}
+      <div
+        className="agul_new_table_operate_and_export_btn_box"
+        style={BoxStyle}
+        ref={boxRef}
+      ></div>
+      {RenderExportBox()}
+      {RenderRowConfig()}
       <Table
         scroll={{ x: "max-content", y: height }}
         dataSource={currentData}
@@ -1369,10 +1409,14 @@ const NewTable: FC<{
         footer={null}
         {...msgModalConfig}
       >
-        <div style={{ fontSize: 13, color: "#575757", textAlign: "center" }}>
+        <div
+          style={{ fontSize: 13, color: "#575757", textAlign: "center" }}
+          className="agul-ui-newtable-delete-message"
+        >
           {msgModalConfig.msg}
         </div>
         <div
+          className="agul-ui-newtable-delete-footer"
           style={{
             margin: "30px auto 14px",
             width: 200,

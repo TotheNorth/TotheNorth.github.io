@@ -18,7 +18,7 @@ function myCompletions(context: CompletionContext) {
   };
 }
 
-const JsonEditor = (props: any) => {
+const CodeEditor = (props: any) => {
   const { disabled, readOnly, value, onChange } = props;
   const placeholder = _.get(
     props,
@@ -41,4 +41,4 @@ const JsonEditor = (props: any) => {
     </div>
   );
 };
-export default JsonEditor;
+export default CodeEditor;

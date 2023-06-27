@@ -1,12 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useUpdateEffect } from "ahooks";
 import { TreeSelect } from "antd";
-import request from "@/agul-utils/request";
+import useNewRequest from "@/agul-hooks/useNewRequest";
 import _ from "lodash";
 import { getTreeData } from "@/agul-utils/utils";
-import { AgulWrapperConfigContext } from "@/agul-utils/context";
 const { SHOW_CHILD } = TreeSelect;
-const CustomDateTime = (props: any) => {
+const CustomTreeSelect = (props: any) => {
   const {
     onChange,
     value,
@@ -16,8 +15,7 @@ const CustomDateTime = (props: any) => {
     placeholder,
   } = props;
   const [treeDataSource, setTreeDataSource] = useState<any[]>([]);
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
+  const request = useNewRequest();
   const getData = () => {
     const params = treeData?.params ? treeData?.params : {};
     _.forEach(dependencies, (item, index) => {
@@ -28,7 +26,6 @@ const CustomDateTime = (props: any) => {
     request(treeData?.url, {
       method: "get",
       params,
-      headers: { ...requestHeaders },
     })
       .then((res) => {
         const treeValue = _.get(res, treeData?.path, []);
@@ -67,4 +64,4 @@ const CustomDateTime = (props: any) => {
     />
   );
 };
-export default CustomDateTime;
+export default CustomTreeSelect;

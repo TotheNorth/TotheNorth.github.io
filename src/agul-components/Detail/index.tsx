@@ -2,13 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import { Descriptions, Tooltip, Table } from "antd";
 import _ from "lodash";
 import { useLocation } from "react-router-dom";
-import request from "@/agul-utils/request";
-import { timeUtcOffect } from "@/agul-utils/utils";
+import useNewRequest from "@/agul-hooks/useNewRequest";
+import { timeUtcOffect, isObject } from "@/agul-utils/utils";
 import { FORMAT_DATETIME } from "@/agul-utils/constant";
 import VirtualTable from "@/agul-components/VirtualTable";
 import GloablLoading from "@/agul-methods/Loading";
-import { AgulWrapperConfigContext } from "@/agul-utils/context";
-
 import "./index.less";
 
 const TextStyle: any = {
@@ -23,6 +21,8 @@ const Detail: React.FC<{
   dataSource?: any;
   field?: any;
   path?: string;
+  method?: "get" | "post";
+  params?: Record<string, string | number>;
   names?: any;
   enums?: any;
   tableConfig?: any;
@@ -35,6 +35,8 @@ const Detail: React.FC<{
   dataSource,
   field,
   path,
+  method,
+  params,
   names,
   enums,
   tableConfig,
@@ -127,13 +129,13 @@ const Detail: React.FC<{
           expandable={childTable ? expandable : undefined}
         />
       );
-    } else if (_.isObject(value)) {
+    } else if (isObject(value)) {
       return (
         <div>
           <br />
           <Descriptions column={1}>
             {_.map(value, (item, y) => {
-              return (
+              return objectConfig[key]?.names[y] ? (
                 <Item label={<div>{objectConfig[key]?.names[y]}</div>}>
                   {RenderContent(
                     item,
@@ -142,7 +144,7 @@ const Detail: React.FC<{
                     enums
                   )}
                 </Item>
-              );
+              ) : null;
             })}
           </Descriptions>
         </div>
@@ -166,21 +168,29 @@ const Detail: React.FC<{
     }
   }, [currentData]);
   const location = useLocation();
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
+  const request = useNewRequest();
   const getData = () => {
+    if (!url) {
+      return;
+    }
     const paramObj = _.get(location, ["query"]);
-    const detailUrl = url!.replaceAll(
-      RegOfUrl,
-      _.get(paramObj, [field])
-    ) as string;
-    GloablLoading.show();
-    request(detailUrl, {
-      method: "get",
-      headers: { ...requestHeaders },
-    })
+    const detailUrl = url.replaceAll(RegOfUrl, _.get(paramObj, [field]));
+    // GloablLoading.show();
+    const reqData = {
+      method: method || "get",
+    };
+    const data = { ...params };
+    if (!RegOfUrl.test(url)) {
+      _.set(data, field, _.get(paramObj, [field]));
+    }
+    if (method === "post") {
+      _.set(reqData, "data", data);
+    } else {
+      _.set(reqData, "params", data);
+    }
+    request(detailUrl, reqData)
       .then((res: any) => {
-        GloablLoading.hide();
+        // GloablLoading.hide();
         const newDetail = _.get(res, path as string);
         if (newDetail) {
           if (_.isFunction(init)) {
@@ -190,7 +200,7 @@ const Detail: React.FC<{
         }
       })
       .catch((err) => {
-        GloablLoading.hide();
+        // GloablLoading.hide();
         setCurrentData({});
         console.error(err.message);
       });

@@ -4,10 +4,10 @@ toc: content
 
 # Navigation
 
-## 基本用法
+## 基本使用
 
 ```jsx
-import { Navigation } from "@iauto/components";
+import { Navigation } from "@iauto/react-ui";
 import { Button } from "antd";
 
 export default () => (

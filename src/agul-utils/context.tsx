@@ -1,4 +1,6 @@
 import React, { createContext, ComponentType } from "react";
+import _ from "lodash";
+import { LoadingContainerId } from "@/agul-utils/constant";
 
 const StateContext = createContext<any>(null);
 const StateDispatchContext = createContext<any>(null);
@@ -33,6 +35,19 @@ export const WidgetsContext = createContext<
   Record<string, ComponentType> | undefined
 >(undefined);
 
-export const ConfigContext = createContext<any>(undefined);
-
 export const AgulWrapperConfigContext = createContext<any>(undefined);
+export const ConfigProvider: React.FC<{
+  children?: React.ReactNode;
+  requestHeaders?: Record<string, string | number>;
+  needReqSign?: boolean;
+  loadingContainerId?: string;
+}> = ({ children, requestHeaders, needReqSign, loadingContainerId }) => {
+  if (loadingContainerId) {
+    _.set(window, LoadingContainerId, loadingContainerId);
+  }
+  return (
+    <AgulWrapperConfigContext.Provider value={{ requestHeaders, needReqSign }}>
+      {children}
+    </AgulWrapperConfigContext.Provider>
+  );
+};

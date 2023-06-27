@@ -1,14 +1,20 @@
-import React, { CSSProperties, useEffect, useState, useContext } from "react";
+import React, {
+  CSSProperties,
+  useEffect,
+  useState,
+  useContext,
+  createElement,
+  useRef,
+} from "react";
 import _ from "lodash";
 import { Button, Steps } from "antd";
 import Message from "@/agul-methods/Message";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import GloablLoading from "@/agul-methods/Loading";
-import request from "@/agul-utils/request";
+import useNewRequest from "@/agul-hooks/useNewRequest";
 import NewForm from "@/agul-components/NewForm";
-import { AgulWrapperConfigContext } from "@/agul-utils/context";
-
+import { WidgetsContext } from "@/agul-utils/context";
 import "./common.less";
 
 const RegOfUrl = /\{.*\}/g;
@@ -19,31 +25,38 @@ const StepsForm: React.FC<{
   const navigate = useNavigate();
   const [step, setStep] = useState<number>(0);
   const [formData, setFormData] = useState<any>({});
-  const mapping = data?.mapping || {};
   const url = data?.component?.url;
   const method = data?.component?.method;
   const field = data?.component?.field;
   const path = data?.component?.path;
+  const detailMethod = data?.component?.detailMethod;
   const schemas = data?.component?.value?.schemas || [];
   const widgets = data?.component?.value?.widgets;
+  const disabled = data?.component?.value?.disabled;
+  const extraBtns = data?.component?.value?.extraBtns || [];
   const location = useLocation();
   const paramObj = _.get(location, ["query"]);
-  const detailUrl = data?.component?.value?.detailUrl?.replaceAll(
+  const detailUrl = data?.component?.detailUrl?.replaceAll(
     RegOfUrl,
     _.get(paramObj, [field])
   );
-  const currentUrl = RegOfUrl.test(url)
-    ? url.replaceAll(RegOfUrl, _.get(paramObj, [field]))
-    : url;
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
+  const currentUrl = data?.component?.url.replaceAll(
+    RegOfUrl,
+    _.get(paramObj, [field])
+  );
+  const request = useNewRequest();
   useEffect(() => {
     if (detailUrl) {
+      const reqData = {
+        method: detailMethod || "get",
+      };
+      if ("post" === detailMethod || !detailMethod) {
+        if (!RegOfUrl.test(detailUrl) && field) {
+          _.set(reqData, `data`, { [field]: _.get(paramObj, [field]) });
+        }
+      }
       GloablLoading.show();
-      request(detailUrl, {
-        method: "get",
-        headers: { ...requestHeaders },
-      })
+      request(detailUrl, reqData)
         .then((res) => {
           GloablLoading.hide();
           const newFormData = _.get(res, path);
@@ -69,11 +82,14 @@ const StepsForm: React.FC<{
     });
     if (lastStep) {
       GloablLoading.show();
-      request(currentUrl, {
+      const reqData = {
         method: method ? method : detailUrl ? "put" : "post",
         data: { ...formData, ...data },
-        headers: { ...requestHeaders },
-      })
+      };
+      if (!RegOfUrl.test(url) && field) {
+        _.set(reqData, `data.${field}`, _.get(paramObj, [field]));
+      }
+      request(currentUrl, reqData)
         .then(() => {
           Message.success({
             title: "操作成功",
@@ -89,7 +105,8 @@ const StepsForm: React.FC<{
       setStep((num) => num + 1);
     }
   };
-
+  const Widgets = useContext(WidgetsContext);
+  const formRef = useRef<any>(null);
   return (
     <div className="agul-steps-form-card" style={style}>
       <Steps
@@ -100,6 +117,7 @@ const StepsForm: React.FC<{
         style={{ marginBottom: "24px" }}
       />
       <NewForm
+        disabled={disabled}
         schema={schemas[step]}
         formData={formData}
         onSubmit={(data: any, errors: any) =>
@@ -108,7 +126,6 @@ const StepsForm: React.FC<{
         widgets={widgets}
         submitText={_.isEqual(step, schemas.length - 1) ? "提交" : "下一步"}
         onCancel={() => navigate(-1)}
-        globalDataFeilds={mapping.form}
         extraButtons={[
           <Button
             disabled={!step}
@@ -118,6 +135,15 @@ const StepsForm: React.FC<{
           >
             上一步
           </Button>,
+          _.map(extraBtns, (com) =>
+            typeof com === "string"
+              ? Widgets && Widgets[com]
+                ? createElement(Widgets[com] as any, { formRef })
+                : com
+              : typeof com === "function"
+              ? createElement(com as any, { formRef })
+              : null
+          ),
         ]}
       />
     </div>

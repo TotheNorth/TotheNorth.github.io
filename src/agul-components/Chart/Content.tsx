@@ -2,9 +2,8 @@ import ReactECharts from "echarts-for-react";
 import { useEffect, useState, useContext } from "react";
 import _ from "lodash";
 import { Spin } from "antd";
-import request from "@/agul-utils/request";
+import useNewRequest from "@/agul-hooks/useNewRequest";
 import NewForm from "@/agul-components/NewForm";
-import { AgulWrapperConfigContext } from "@/agul-utils/context";
 
 const Content: React.FC<{
   option?: any;
@@ -25,8 +24,7 @@ const Content: React.FC<{
 }) => {
   const [currentOption, setOption] = useState(option || {});
   const [loading, setLoading] = useState<boolean>(false);
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
+  const request = useNewRequest();
   const getData = async (value: any) => {
     const data =
       method === "get"
@@ -41,7 +39,6 @@ const Content: React.FC<{
       const res = await request(url, {
         method,
         ...data,
-        headers: { ...requestHeaders },
       });
       setLoading(false);
       setTimeout(() => {
@@ -85,7 +82,7 @@ const Content: React.FC<{
     getData({ ...params, ..._.pickBy(formData, (item) => !_.isNil(item)) });
   };
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: "100%", position: "relative" }}>
       {schema ? (
         <div
           style={{

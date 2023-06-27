@@ -87,7 +87,7 @@ export const clearParams = function (obj: any) {
 
 // 组合成树
 export const flatListToTree = (arr: any) => {
-  const map: any = {};
+  const map: Record<string, any> = {};
   arr.forEach((i: any) => {
     map[i.id] = i;
   });
@@ -404,17 +404,17 @@ export const getSoaFileJSON = (_file: any): Promise<any> => {
 export function getTreeData(data: any, labelFeild: string, valueFeild: string) {
   return _.map(data, (item) => {
     if (item?.children) {
-      item.label = item[labelFeild];
-      item.value = item[valueFeild];
+      item.title = item[labelFeild];
+      item.key = item[valueFeild];
       item.children = getTreeData(item.children, labelFeild, valueFeild);
     } else {
-      item.label = item[labelFeild];
-      item.value = item[valueFeild];
+      item.title = item[labelFeild];
+      item.key = item[valueFeild];
     }
     return item;
   });
 }
-export function getQuerys(e: any) {
+export function getQuerys(e: string) {
   if (!e) return "";
   var t: any = {},
     r = [],
@@ -434,16 +434,17 @@ export function getQuerys(e: any) {
   return t;
 }
 
-export function isObject(data: any) {
-  return Object.prototype.toString.call(data) === "[object Object]";
-}
 export function filterFormData(data: Record<string, any>) {
-  delete data["___agul_ui_time____"];
+  // delete data["___agul_ui_time____"];
   _.forEach(data, (item, key) => {
     if (_.isNil(item) || item === "" || _.isNaN(item)) {
       delete data[key];
     }
   });
+}
+
+export function isObject(data: any) {
+  return Object.prototype.toString.call(data) === "[object Object]";
 }
 export const isDOM =
   typeof HTMLElement === "object"

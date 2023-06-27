@@ -1,8 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import _ from "lodash";
 import { Cascader } from "antd";
-import request from "@/agul-utils/request";
-import { AgulWrapperConfigContext } from "@/agul-utils/context";
+import useNewRequest from "@/agul-hooks/useNewRequest";
 
 const BoxStyle = { width: "100%", display: "flex" };
 const CascaderStyle = { flexGrow: "1" };
@@ -44,13 +43,11 @@ const CustomCascader = (props: any) => {
   } = props;
   const [cascaderOptions, setCascaderOptions] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
+  const request = useNewRequest();
   useEffect(() => {
     setLoading(true);
     request(treeData?.url, {
       method: "get",
-      headers: { ...requestHeaders },
     })
       .then((res) => {
         setLoading(false);

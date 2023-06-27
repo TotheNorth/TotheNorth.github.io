@@ -11,8 +11,8 @@
     "noImplicitThis": false,
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "@iauto/components": ["src"],
-      "@iauto/components/*": ["src/*", "*"],
+      "@iauto/react-ui": ["src"],
+      "@iauto/react-ui/*": ["src/*", "*"],
       "@/*": ["src/*"]
     }
   },

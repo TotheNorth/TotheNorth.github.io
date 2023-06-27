@@ -1,7 +1,7 @@
-# @iauto/components
+# @iauto/react-ui
 
-[![NPM version](https://img.shields.io/npm/v/@iauto/components.svg?style=flat)](https://npmjs.org/package/@iauto/components)
-[![NPM downloads](http://img.shields.io/npm/dm/@iauto/components.svg?style=flat)](https://npmjs.org/package/@iauto/components)
+[![NPM version](https://img.shields.io/npm/v/@iauto/react-ui.svg?style=flat)](https://npmjs.org/package/@iauto/react-ui)
+[![NPM downloads](http://img.shields.io/npm/dm/@iauto/react-ui.svg?style=flat)](https://npmjs.org/package/@iauto/react-ui)
 
 A react component library
 

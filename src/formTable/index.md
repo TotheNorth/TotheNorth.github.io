@@ -2,12 +2,14 @@
 toc: content
 ---
 
-## TableWithForm
+# TableWithForm
+
+## 基本使用
 
 因`表单+表格`类页面常见于项目中，所以将`NewTable`与`NewForm`两个组件组合为`TableWithForm`达到此目的：使用`NewForm`产出的数据变更`NewTable`的`params`属性达到重新请求数据并刷新表格的逻辑目的。
 
 ```jsx
-import { TableWithForm } from "@iauto/components";
+import { TableWithForm } from "@iauto/react-ui";
 
 const schema = {
   type: "object",
@@ -95,7 +97,7 @@ export default () => {
 
 ### TableWithForm
 
-`TableWithForm`的配置参数基本是`NewTable`的所有参数（原`operate`改为`tableOperate`、原`ref`改为`tableRef`）加上`NewForm`的`schema`与`widgets`，因此此类参数不再具体展开说明，这里着重介绍`TableWithForm`的一些特有配置参数。
+`TableWithForm`的配置参数基本是`NewTable`的所有参数（NewTable 的`operate`改为[tableOperate](/components/newtable#operateprops)、NewTable 的`ref`改为`tableRef`）加上`NewForm`的`schema`与`widgets`，因此此类参数不再具体展开说明，这里着重介绍`TableWithForm`的一些特有配置参数。
 
 <table>
   <tr>
@@ -105,21 +107,9 @@ export default () => {
     <th>默认值</th>
   </tr>
   <tr>
-    <td>tableOperate</td>
-    <td>表格操作栏配置，与NewTable的operate一致</td>
-    <td><a href="/components/newtable#operateprops">OperateProps</a></td>
-    <td>-</td>
-  </tr>
-   <tr>
-    <td>tableRef</td>
-    <td>表哥的组件引用，与NewTable的ref一致</td>
-    <td>useRef</td>
-    <td>-</td>
-  </tr>
-  <tr>
     <td>addBtn</td>
     <td>新增按钮，置于表单查询按钮之后，无此项则不显示该按钮</td>
-    <td><a href="#addbtnprops">AddBtnProps</a></td>
+    <td>AddBtnProps</td>
     <td>-</td>
   </tr>
  
@@ -173,7 +163,7 @@ export default () => {
   </tr>
    <tr>
     <td>props</td>
-    <td>新增按钮属性，透传给 <a href="https://4x.ant.design/components/button-cn/#API" target="_blank">antd-buttton</a></td>
+    <td>新增按钮属性，透传给 <a href="https://4x.ant.design/components/button-cn/#API">antd-buttton</a></td>
     <td><div style="white-space:nowrap;">object</div></td>
     <td>-</td>
   </tr>

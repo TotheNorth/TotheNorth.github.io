@@ -4,10 +4,12 @@ toc: content
 
 # VirtualTable
 
+## 基本使用
+
 配置与 [antd-table](https://ant.design/components/table-cn#api) 一致，只增加虚拟列表特性，用于大数据展示。
 
 ```jsx
-import { VirtualTable } from "@iauto/components";
+import { VirtualTable } from "@iauto/react-ui";
 const columns = [
   { title: "A", dataIndex: "key" },
   { title: "B", dataIndex: "key" },

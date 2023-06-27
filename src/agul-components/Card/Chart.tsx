@@ -12,7 +12,6 @@ const ChartlCard: React.FC<{
         method={data?.component?.method}
         params={data?.component?.params}
         path={data?.component?.path}
-        multiple={data?.component?.value?.multiple}
         multipleConfig={data?.component?.value?.multipleConfig}
         option={data?.component?.value?.option}
         formConfig={data?.component?.value?.formConfig}

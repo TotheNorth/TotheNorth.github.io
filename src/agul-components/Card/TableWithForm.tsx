@@ -9,15 +9,15 @@ import {
 import _ from "lodash";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Button, message } from "antd";
+import { Button } from "antd";
 import Message from "@/agul-methods/Message";
 import { v4 as uuid } from "uuid";
 import NewForm from "@/agul-components/NewForm";
 import NewTable from "@/agul-components/NewTable";
 import ModalWithForm from "@/agul-components/ModalWithForm";
 import GloablLoading from "@/agul-methods/Loading";
-import { WidgetsContext, AgulWrapperConfigContext } from "@/agul-utils/context";
-import request from "@/agul-utils/request";
+import { WidgetsContext } from "@/agul-utils/context";
+import useNewRequest from "@/agul-hooks/useNewRequest";
 import "./common.less";
 
 const DefaultModalConfig = {
@@ -30,17 +30,17 @@ const DefaultModalConfig = {
   formData: {},
   widgets: {},
 };
-function uploadFile(event: any, url: string, reset: () => void, headers = {}) {
+function uploadFile(event: any, url: string, reset: () => void) {
   const file =
     event.target.files[0] || event.dataTransfer.files[0] || this.file.files[0];
   // 使用FormData方式上传，并设置相应的参数
   const fData = new FormData();
+  const request = useNewRequest();
   fData.set("file", file); // 设置上传属性
   GloablLoading.show();
   request(url, {
     method: "post",
     data: fData,
-    headers: { ...headers },
   })
     .then(() => {
       Message.success({
@@ -54,40 +54,6 @@ function uploadFile(event: any, url: string, reset: () => void, headers = {}) {
       GloablLoading.hide();
     });
 }
-function getJSONtoUpload(
-  event: any,
-  importInfo: any,
-  reset: () => void,
-  headers = {}
-) {
-  const file =
-    _.get(event, ["target", "files", 0]) ||
-    _.get(event, ["dataTransfer", "files", 0]) ||
-    _.get(this, ["file", "files", 0]);
-  importInfo
-    ?.getJSON(file)
-    .then((res: any) => {
-      request(importInfo?.url, {
-        method: "post",
-        data: res,
-        headers: { ...headers },
-      })
-        .then(() => {
-          Message.success({
-            title: "操作成功",
-          });
-          reset();
-        })
-        .catch((err) => {
-          console.error(err.message);
-        });
-    })
-    .catch((err: Error) => {
-      if (err.message) {
-        message.warn(err.message);
-      }
-    });
-}
 const RegOfUrl = /\{.*\}/g;
 const TableWithForm: React.FC<{
   data: any;
@@ -95,21 +61,15 @@ const TableWithForm: React.FC<{
 }> = ({ data, style }) => {
   const location = useLocation();
   const paramObj = _.get(location, ["query"]);
-  const mapping = data?.mapping || {};
   const fileRef = useRef<any>(null);
   const formRef = useRef<any>(null);
   const modalFormRef = useRef<any>(null);
   const [modalConfig, setModalConfig] = useState<any>(DefaultModalConfig);
   const [params, setParams] = useState<any>({});
-  const [showTable, setShowTable] = useState<boolean>(false);
+  const showTableRef = useRef<boolean>(false);
   const onMount = () => {
-    const init = _.get(schema, "action.init", () => {});
-    const data = formRef?.current?.getValues();
-    init(data);
-    setParams({
-      ...data,
-    });
-    setShowTable(true);
+    toSubmit();
+    showTableRef.current = true;
   };
   const field = data?.component?.field;
   const url = data?.component?.url!.replaceAll(
@@ -118,8 +78,12 @@ const TableWithForm: React.FC<{
   ) as string;
   const path = data?.component?.path;
   const pagePath = data?.component?.pagePath;
+  const method = data?.component?.method;
   const columns = data?.component?.value?.tableConfig?.columns;
+  const extraPagination = data?.component?.value?.tableConfig?.extraPagination;
   const childTable = data?.component?.value?.tableConfig?.childTable;
+  const height = data?.component?.value?.tableConfig?.height;
+  const rowKey = data?.component?.value?.tableConfig?.rowKey;
   const rowSelect = data?.component?.value?.tableConfig?.rowSelect;
   const schema = data?.component?.value?.formConfig?.schema;
   const widgets = data?.component?.value?.formConfig?.widgets;
@@ -131,16 +95,14 @@ const TableWithForm: React.FC<{
   const tableOperate = data?.component?.value?.tableConfig?.operate;
   const rowConfig = data?.component?.value?.tableConfig?.rowConfig;
   const needOrder = data?.component?.value?.tableConfig?.needOrder;
-  const method = data?.component?.value?.tableConfig?.method;
+  const request = useNewRequest();
   const navigate = useNavigate();
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
   const toSubmit = () => {
     formRef?.current
       ?.validate()
       .then((res: any) => {
         if (!res?.errors || !res?.errors?.length) {
-          _.set(res, "___agul_ui_time____", new Date().getTime());
+          // _.set(res, "___agul_ui_time____", new Date().getTime());
           setParams(_.pickBy(res, (item) => !_.isNil(item)));
         }
       })
@@ -150,7 +112,8 @@ const TableWithForm: React.FC<{
   };
   const reset = () => {
     formRef?.current?.resetFields();
-    setParams({ ___agul_ui_time____: new Date().getTime() });
+    // setParams({ ___agul_ui_time____: new Date().getTime() });
+    setParams({});
   };
   const toAdd = () => {
     if (addBtn?.routerPath) {
@@ -165,7 +128,6 @@ const TableWithForm: React.FC<{
             request(addBtn?.url, {
               method: addBtn?.method ? addBtn?.method : "post",
               data: res,
-              headers: { ...requestHeaders },
             })
               .then(() => {
                 Message.success({
@@ -201,7 +163,7 @@ const TableWithForm: React.FC<{
       ? { ...data?.component?.params, ...params }
       : params;
   }, [params]);
-  const tableOperateBoxId = uuid();
+  const rowConfigBox = uuid();
   return (
     <div className="agul-table-with-form-card" style={style}>
       {schema ? (
@@ -211,11 +173,10 @@ const TableWithForm: React.FC<{
               schema={schema}
               widgets={widgets}
               ref={formRef}
-              globalDataFeilds={mapping.form}
               onMount={onMount}
             />
           </div>
-          <div className="agul-table-with-operate-box" id={tableOperateBoxId}>
+          <div className="agul-table-with-operate-box" id={rowConfigBox}>
             <Button onClick={() => toSubmit()}>查询</Button>
             {addBtn ? (
               <Button type="primary" onClick={toAdd} {...addBtn?.props}>
@@ -236,19 +197,19 @@ const TableWithForm: React.FC<{
                 ? Widgets && Widgets[com]
                   ? createElement(Widgets[com] as any, {
                       reset,
-                      upDate: toSubmit,
+                      update: toSubmit,
                     })
                   : com
                 : typeof com === "function"
-                ? createElement(com as any, { reset, upDate: toSubmit })
+                ? createElement(com as any, { reset, update: toSubmit })
                 : null
             )}
           </div>
         </div>
       ) : null}
-      {showTable ? (
+      {showTableRef.current ? (
         <NewTable
-          rowKey="id"
+          rowKey={rowKey || "id"}
           url={url}
           params={currentParams}
           columns={columns}
@@ -260,9 +221,11 @@ const TableWithForm: React.FC<{
           childTable={childTable}
           needOrder={needOrder}
           method={method}
-          tableOperateBoxId={tableOperateBoxId}
-          tableExportBoxId={tableOperateBoxId}
+          rowConfigBox={rowConfigBox}
+          exportBox={rowConfigBox}
           exportBtn={exportBtn}
+          extraPagination={extraPagination}
+          height={height}
         />
       ) : null}
       <ModalWithForm {...modalConfig} ref={modalFormRef} />
@@ -270,11 +233,7 @@ const TableWithForm: React.FC<{
         type="file"
         style={{ display: "none" }}
         ref={fileRef}
-        onChange={(event) =>
-          importBtn?.dataType === "json"
-            ? getJSONtoUpload(event, importBtn, reset, requestHeaders)
-            : uploadFile(event, importBtn?.url, reset, requestHeaders)
-        }
+        onChange={(event) => uploadFile(event, importBtn?.url, reset)}
       />
     </div>
   );

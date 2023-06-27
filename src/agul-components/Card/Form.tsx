@@ -12,8 +12,8 @@ import Message from "@/agul-methods/Message";
 import { useNavigate } from "react-router-dom";
 import GloablLoading from "@/agul-methods/Loading";
 import NewForm from "@/agul-components/NewForm";
-import request from "@/agul-utils/request";
-import { WidgetsContext, AgulWrapperConfigContext } from "@/agul-utils/context";
+import useNewRequest from "@/agul-hooks/useNewRequest";
+import { WidgetsContext } from "@/agul-utils/context";
 import "./common.less";
 
 const RegOfUrl = /\{.*\}/g;
@@ -21,35 +21,37 @@ const Form: React.FC<{
   data: any;
   style: CSSProperties;
 }> = ({ data, style }) => {
+  const request = useNewRequest();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<any>({});
-  const mapping = data?.mapping || {};
   const url = data?.component?.url;
   const path = data?.component?.path;
   const field = data?.component?.field;
   const method = data?.component?.method;
+  const detailMethod = data?.component?.detailMethod;
   const disabled = data?.component?.value?.disabled;
   const schema = data?.component?.value?.schema;
   const widgets = data?.component?.value?.widgets;
   const extraBtns = data?.component?.value?.extraBtns || [];
   const location = useLocation();
   const paramObj = _.get(location, ["query"]);
-  const detailUrl = data?.component?.value?.detailUrl?.replaceAll(
+  const detailUrl = data?.component?.detailUrl?.replaceAll(
     RegOfUrl,
     _.get(paramObj, [field])
   );
-  const currentUrl = RegOfUrl.test(url)
-    ? url.replaceAll(RegOfUrl, _.get(paramObj, [field]))
-    : url;
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
+  const currentUrl = url.replaceAll(RegOfUrl, _.get(paramObj, [field]));
   useEffect(() => {
     if (detailUrl) {
+      const reqData = {
+        method: detailMethod || "get",
+      };
+      if ("post" === detailMethod || !detailMethod) {
+        if (!RegOfUrl.test(detailUrl) && field) {
+          _.set(reqData, `data`, { [field]: _.get(paramObj, [field]) });
+        }
+      }
       GloablLoading.show();
-      request(detailUrl, {
-        method: "get",
-        headers: { ...requestHeaders },
-      })
+      request(detailUrl, reqData)
         .then((res) => {
           GloablLoading.hide();
           const newFormData = _.get(res, path);
@@ -68,11 +70,14 @@ const Form: React.FC<{
       return;
     }
     GloablLoading.show();
-    request(currentUrl, {
+    const reqData = {
       method: method ? method : detailUrl ? "put" : "post",
       data,
-      headers: { ...requestHeaders },
-    })
+    };
+    if (!RegOfUrl.test(url) && field) {
+      _.set(reqData, `data.${field}`, _.get(paramObj, [field]));
+    }
+    request(currentUrl, reqData)
       .then(() => {
         Message.success({
           title: "操作成功",
@@ -97,7 +102,6 @@ const Form: React.FC<{
         formData={formData}
         onSubmit={disabled ? undefined : toSubmit}
         onCancel={disabled ? undefined : () => navigate(-1)}
-        globalDataFeilds={mapping.form}
         disabled={disabled}
         extraButtons={_.map(extraBtns, (com) =>
           typeof com === "string"

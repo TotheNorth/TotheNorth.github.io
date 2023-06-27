@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Select } from "antd";
-import request from "@/agul-utils/request";
-import { AgulWrapperConfigContext } from "@/agul-utils/context";
+import { SelectMultipleMode } from "@/agul-utils/constant";
+import useNewRequest from "@/agul-hooks/useNewRequest";
 import _ from "lodash";
 
 function getStr(data: any, feilds: any[]) {
@@ -20,10 +20,10 @@ const SearchInput = (props: any) => {
     addons: { dataPath, getFieldError, dependValues },
     allowClear,
     placeholder,
+    mode,
   } = props;
-  const Wrapper = useContext(AgulWrapperConfigContext) as any;
-  const requestHeaders = _.get(Wrapper, "requestHeaders", {}) || {};
   const [dataSource, setDataSource] = useState<any[]>([]);
+  const request = useNewRequest();
   const fetch = (keyword: string) => {
     const params = treeData?.params ? treeData?.params : {};
     _.forEach(dependencies, (item, index) => {
@@ -39,14 +39,11 @@ const SearchInput = (props: any) => {
     request(treeData?.url, {
       method: "get",
       params,
-      headers: { ...requestHeaders },
     })
       .then((res) => {
         const data = _.map(_.get(res, treeData?.path || "data", []), (x) => ({
           label: String(_.get(x, treeData?.labelFeild || "name")),
-          value: _.isArray(treeData?.valueFeild)
-            ? getStr(x, treeData?.valueFeild)
-            : String(_.get(x, treeData?.valueFeild || "id")),
+          value: String(_.get(x, treeData?.valueFeild || "id")),
         }));
         setDataSource(data);
       })
@@ -68,6 +65,7 @@ const SearchInput = (props: any) => {
 
   return (
     <Select
+      mode={mode === SelectMultipleMode ? mode : undefined}
       status={!_.isEmpty(getFieldError(dataPath)) ? "error" : ""}
       showSearch
       style={{ width: "100%" }}
